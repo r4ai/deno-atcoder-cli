@@ -113,7 +113,7 @@ type Callable<T> = T extends (...args: any[]) => any ? T
   : T extends object ? { [K in keyof T]: Callable<T[K]> }
   : () => T
 
-const callable = <T>(obj: T) => {
+const callable = <T>(obj: T): Callable<T> => {
   for (const key in obj) {
     switch (typeof obj[key]) {
       case "object": {
@@ -137,7 +137,9 @@ const callable = <T>(obj: T) => {
   return obj as Callable<T>
 }
 
-export const getConfig = async (config?: Partial<Config>) => {
+export const getConfig = async (
+  config?: Partial<Config>,
+): Promise<Callable<Required<Config>>> => {
   const localConfig = await getLocalConfig(Deno.cwd())
   const mergedConfig = defu(config, localConfig, defaultConfig)
   return callable(mergedConfig)
