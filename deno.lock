@@ -3,24 +3,38 @@
   "packages": {
     "specifiers": {
       "jsr:@b-fuze/deno-dom@0.1.43": "jsr:@b-fuze/deno-dom@0.1.43",
+      "jsr:@cliffy/ansi@1.0.0-rc.4": "jsr:@cliffy/ansi@1.0.0-rc.4",
       "jsr:@cliffy/command@1.0.0-rc.4": "jsr:@cliffy/command@1.0.0-rc.4",
       "jsr:@cliffy/flags@1.0.0-rc.4": "jsr:@cliffy/flags@1.0.0-rc.4",
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
       "jsr:@std/assert@^0.225.2": "jsr:@std/assert@0.225.2",
       "jsr:@std/console@0.221": "jsr:@std/console@0.221.0",
+      "jsr:@std/encoding@0.221": "jsr:@std/encoding@0.221.0",
       "jsr:@std/fmt@0.221": "jsr:@std/fmt@0.221.0",
       "jsr:@std/fs@^0.229.1": "jsr:@std/fs@0.229.1",
+      "jsr:@std/io@0.221": "jsr:@std/io@0.221.0",
       "jsr:@std/path@^0.225.1": "jsr:@std/path@0.225.1",
       "jsr:@std/text@0.221": "jsr:@std/text@0.221.0",
       "npm:@biomejs/biome": "npm:@biomejs/biome@1.7.3",
+      "npm:deden": "npm:deden@1.0.1",
+      "npm:dedent@1.5.3": "npm:dedent@1.5.3",
       "npm:defu@6.1.4": "npm:defu@6.1.4",
       "npm:defu@^6.1.4": "npm:defu@6.1.4",
-      "npm:lefthook": "npm:lefthook@1.6.12"
+      "npm:lefthook": "npm:lefthook@1.6.12",
+      "npm:ora@8.0.1": "npm:ora@8.0.1"
     },
     "jsr": {
       "@b-fuze/deno-dom@0.1.43": {
         "integrity": "6e99c4645ab897520fa04d60d0096aa1f49ff9a8950db7f258511419ab08d754"
+      },
+      "@cliffy/ansi@1.0.0-rc.4": {
+        "integrity": "df561b6a69bb5177c31618c027274504ed24b996b854fa072eb7d0a380e41ac1",
+        "dependencies": [
+          "jsr:@std/encoding@0.221",
+          "jsr:@std/fmt@0.221",
+          "jsr:@std/io@0.221"
+        ]
       },
       "@cliffy/command@1.0.0-rc.4": {
         "integrity": "709884ffe0f53ce3edafa92b58223634397878fbf6dcabe0c74ea0108273b9f7",
@@ -49,6 +63,9 @@
       "@std/console@0.221.0": {
         "integrity": "8f2afc1f3f14f5d6039c0c767f057e4aa1897d2210e167c4667cb155cafb9d11"
       },
+      "@std/encoding@0.221.0": {
+        "integrity": "d1dd76ef0dc5d14088411e6dc1dede53bf8308c95d1537df1214c97137208e45"
+      },
       "@std/fmt@0.221.0": {
         "integrity": "379fed69bdd9731110f26b9085aeb740606b20428ce6af31ef6bd45ef8efa62a"
       },
@@ -58,6 +75,9 @@
           "jsr:@std/assert@^0.225.2",
           "jsr:@std/path@^0.225.1"
         ]
+      },
+      "@std/io@0.221.0": {
+        "integrity": "faf7f8700d46ab527fa05cc6167f4b97701a06c413024431c6b4d207caa010da"
       },
       "@std/path@0.225.1": {
         "integrity": "8c3220635a73730eb51fe43de9e10b79e2724a5bb8638b9355d35ae012fd9429",
@@ -118,8 +138,60 @@
         "integrity": "sha512-ZmByhbrnmz/UUFYB622CECwhKIPjJLLPr5zr3edhu04LzbfcOrz16VYeNq5dpO1ADG70FORhAJkaIGdaVBG00w==",
         "dependencies": {}
       },
+      "ansi-regex@6.0.1": {
+        "integrity": "sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==",
+        "dependencies": {}
+      },
+      "chalk@5.3.0": {
+        "integrity": "sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==",
+        "dependencies": {}
+      },
+      "cli-cursor@4.0.0": {
+        "integrity": "sha512-VGtlMu3x/4DOtIUwEkRezxUZ2lBacNJCHash0N0WeZDBS+7Ux1dm3XWAgWYxLJFMMdOeXMHXorshEFhbMSGelg==",
+        "dependencies": {
+          "restore-cursor": "restore-cursor@4.0.0"
+        }
+      },
+      "cli-spinners@2.9.2": {
+        "integrity": "sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==",
+        "dependencies": {}
+      },
+      "deden@1.0.1": {
+        "integrity": "sha512-zHk/JsUgqH5Jdcr0W8ks+sijA4eHEmJSV1NCIRC7XsKj5yYO4Sj7KBSzbJKbvRkDl4e6Aw3X+PzdmZ6bAx+O4A==",
+        "dependencies": {
+          "es6-promise": "es6-promise@4.2.8"
+        }
+      },
+      "dedent@1.5.3": {
+        "integrity": "sha512-NHQtfOOW68WD8lgypbLA5oT+Bt0xXJhiYvoR6SmmNXZfpzOGXwdKWmcwG8N7PwVVWV3eF/68nmD9BaJSsTBhyQ==",
+        "dependencies": {}
+      },
       "defu@6.1.4": {
         "integrity": "sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==",
+        "dependencies": {}
+      },
+      "emoji-regex@10.3.0": {
+        "integrity": "sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==",
+        "dependencies": {}
+      },
+      "es6-promise@4.2.8": {
+        "integrity": "sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==",
+        "dependencies": {}
+      },
+      "get-east-asian-width@1.2.0": {
+        "integrity": "sha512-2nk+7SIVb14QrgXFHcm84tD4bKQz0RxPuMT8Ag5KPOq7J5fEmAg0UbXdTOSHqNuHSU28k55qnceesxXRZGzKWA==",
+        "dependencies": {}
+      },
+      "is-interactive@2.0.0": {
+        "integrity": "sha512-qP1vozQRI+BMOPcjFzrjXuQvdak2pHNUMZoeG2eRbiSqyvbEf/wQtEOTOX1guk6E3t36RkaqiSt8A/6YElNxLQ==",
+        "dependencies": {}
+      },
+      "is-unicode-supported@1.3.0": {
+        "integrity": "sha512-43r2mRvz+8JRIKnWJ+3j8JtjRKZ6GmjzfaE/qiBJnikNnYv/6bagRJ1kUhNk8R5EX/GkobD+r+sfxCPJsiKBLQ==",
+        "dependencies": {}
+      },
+      "is-unicode-supported@2.0.0": {
+        "integrity": "sha512-FRdAyx5lusK1iHG0TWpVtk9+1i+GjrzRffhDg4ovQ7mcidMQ6mj+MhKPmvh7Xwyv5gIS06ns49CA7Sqg7lC22Q==",
         "dependencies": {}
       },
       "lefthook-darwin-arm64@1.6.12": {
@@ -165,6 +237,66 @@
           "lefthook-linux-x64": "lefthook-linux-x64@1.6.12",
           "lefthook-windows-arm64": "lefthook-windows-arm64@1.6.12",
           "lefthook-windows-x64": "lefthook-windows-x64@1.6.12"
+        }
+      },
+      "log-symbols@6.0.0": {
+        "integrity": "sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==",
+        "dependencies": {
+          "chalk": "chalk@5.3.0",
+          "is-unicode-supported": "is-unicode-supported@1.3.0"
+        }
+      },
+      "mimic-fn@2.1.0": {
+        "integrity": "sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==",
+        "dependencies": {}
+      },
+      "onetime@5.1.2": {
+        "integrity": "sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==",
+        "dependencies": {
+          "mimic-fn": "mimic-fn@2.1.0"
+        }
+      },
+      "ora@8.0.1": {
+        "integrity": "sha512-ANIvzobt1rls2BDny5fWZ3ZVKyD6nscLvfFRpQgfWsythlcsVUC9kL0zq6j2Z5z9wwp1kd7wpsD/T9qNPVLCaQ==",
+        "dependencies": {
+          "chalk": "chalk@5.3.0",
+          "cli-cursor": "cli-cursor@4.0.0",
+          "cli-spinners": "cli-spinners@2.9.2",
+          "is-interactive": "is-interactive@2.0.0",
+          "is-unicode-supported": "is-unicode-supported@2.0.0",
+          "log-symbols": "log-symbols@6.0.0",
+          "stdin-discarder": "stdin-discarder@0.2.2",
+          "string-width": "string-width@7.1.0",
+          "strip-ansi": "strip-ansi@7.1.0"
+        }
+      },
+      "restore-cursor@4.0.0": {
+        "integrity": "sha512-I9fPXU9geO9bHOt9pHHOhOkYerIMsmVaWB0rA2AI9ERh/+x/i7MV5HKBNrg+ljO5eoPVgCcnFuRjJ9uH6I/3eg==",
+        "dependencies": {
+          "onetime": "onetime@5.1.2",
+          "signal-exit": "signal-exit@3.0.7"
+        }
+      },
+      "signal-exit@3.0.7": {
+        "integrity": "sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==",
+        "dependencies": {}
+      },
+      "stdin-discarder@0.2.2": {
+        "integrity": "sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==",
+        "dependencies": {}
+      },
+      "string-width@7.1.0": {
+        "integrity": "sha512-SEIJCWiX7Kg4c129n48aDRwLbFb2LJmXXFrWBG4NGaRtMQ3myKPKbwrD1BKqQn74oCoNMBVrfDEr5M9YxCsrkw==",
+        "dependencies": {
+          "emoji-regex": "emoji-regex@10.3.0",
+          "get-east-asian-width": "get-east-asian-width@1.2.0",
+          "strip-ansi": "strip-ansi@7.1.0"
+        }
+      },
+      "strip-ansi@7.1.0": {
+        "integrity": "sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==",
+        "dependencies": {
+          "ansi-regex": "ansi-regex@6.0.1"
         }
       }
     }
@@ -357,10 +489,13 @@
   "workspace": {
     "dependencies": [
       "jsr:@b-fuze/deno-dom@0.1.43",
+      "jsr:@cliffy/ansi@1.0.0-rc.4",
       "jsr:@cliffy/command@1.0.0-rc.4",
       "jsr:@std/fs@^0.229.1",
       "jsr:@std/path@^0.225.1",
-      "npm:defu@^6.1.4"
+      "npm:dedent@1.5.3",
+      "npm:defu@^6.1.4",
+      "npm:ora@8.0.1"
     ]
   }
 }

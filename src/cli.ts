@@ -5,6 +5,9 @@ import { getContests } from "./api/contests.ts"
 import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"
 import { getConfig } from "./config.ts"
+import { oraPromise } from "ora"
+import dedent from "dedent"
+import { colors } from "@cliffy/ansi"
 
 export const atcoder = new Command()
   .name("atcoder")
@@ -21,8 +24,18 @@ atcoder.command("gen")
     return contests.map((contest) => contest.id)
   })
   .action(async ({ force }, contestId) => {
+    // const spinner = ora(`Generating contest: ${contestId}`).start()
     const config = await getConfig()
-    const problems = await getProblems(contestId)
+    const problems = await oraPromise(getProblems(contestId), {
+      text: `Fetching problem list for ${contestId}`,
+      successText: `Fetched problem list for ${contestId}`,
+      failText: (err) =>
+        dedent`
+          Failed to fetch problem list for ${contestId}
+          ==================================================
+          ${err}
+        `,
+    })
 
     const contestDir = path.join(config.contestsDir(), contestId)
     if (force && fs.existsSync(contestDir)) {
@@ -34,10 +47,24 @@ atcoder.command("gen")
 
     await Deno.mkdir(contestDir, { recursive: true })
     for (const problemMetaData of problems) {
-      const problemInfo = await getProblemInfo(
-        contestId,
-        problemMetaData.id,
-        problemMetaData.url,
+      const problemInfo = await oraPromise(
+        getProblemInfo(
+          contestId,
+          problemMetaData.id,
+          problemMetaData.url,
+        ),
+        {
+          text:
+            `Fetching information for ${contestId}/${problemMetaData.id.toUpperCase()}`,
+          successText:
+            `Fetched information for ${contestId}/${problemMetaData.id.toUpperCase()}`,
+          failText: (err) =>
+            dedent`
+              Failed to fetch information for ${contestId}/${problemMetaData.id.toUpperCase()}
+              ==================================================
+              ${err}
+            `,
+        },
       )
       const problem = { ...problemMetaData, ...problemInfo }
 
@@ -71,4 +98,13 @@ atcoder.command("gen")
         )
       })
     }
+
+    console.log(
+      [
+        "",
+        colors.brightGreen.bold(` Successfully generated ${contestId} contest!`),
+        "",
+        colors.dim(` Press Enter to continue...`),
+      ].join("\n"),
+    )
   })

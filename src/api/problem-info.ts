@@ -1,4 +1,5 @@
 import { DOMParser } from "@b-fuze/deno-dom"
+import { sleep } from "../utils.ts"
 
 type Test = {
   /**
@@ -63,6 +64,7 @@ export const getProblemInfo = async (
     return cachedProblemInfo.problem
   }
 
+  await sleep(1000)
   const problemInfo = await fetchProblemInfo(problemUrl)
   cacheProblemInfo(contestId, problemId, problemInfo)
   return problemInfo
@@ -97,7 +99,10 @@ const fetchProblemInfo = async (
 ) => {
   const res = await fetch(problemUrl)
   if (!res.ok) {
-    throw new Error(`Failed to fetch problem: ${problemUrl}`)
+    throw new Error(
+      `Failed to fetch problem: ${problemUrl}; ${res.status} ${res.statusText}; ${await res
+        .text()}`,
+    )
   }
   const contestPage = await res.text()
 
