@@ -1,6 +1,4 @@
-import * as fs from "@std/fs"
-import * as path from "@std/path"
-import { defu } from "defu"
+import { defu, fs, path } from "./deps.ts"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
 
 export type Config = {
@@ -102,7 +100,7 @@ const getLocalConfig = async (dir: string): Promise<Config> => {
   const configFileNames = ["ac.config.ts", "ac.config.js"]
   const configFile = configFileNames.find((name) => fs.existsSync(name))
   if (configFile) {
-    const module = await import(path.join(dir, configFile))
+    const module = await import(path.resolve(dir, configFile))
     return module.default
   }
 

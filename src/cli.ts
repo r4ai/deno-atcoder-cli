@@ -1,13 +1,16 @@
-import { Command, CompletionsCommand } from "@cliffy/command"
-import * as fs from "@std/fs"
-import * as path from "@std/path"
+import {
+  colors,
+  Command,
+  CompletionsCommand,
+  dedent,
+  fs,
+  oraPromise,
+  path,
+} from "./deps.ts"
 import { getContests } from "./api/contests.ts"
 import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"
 import { getConfig } from "./config.ts"
-import { oraPromise } from "ora"
-import dedent from "dedent"
-import { colors } from "@cliffy/ansi"
 
 export const atcoder = new Command()
   .name("atcoder")
@@ -102,7 +105,9 @@ atcoder.command("gen")
     console.log(
       [
         "",
-        colors.brightGreen.bold(` Successfully generated ${contestId} contest!`),
+        colors.brightGreen.bold(
+          ` Successfully generated ${contestId} contest!`,
+        ),
         "",
         colors.dim(` Press Enter to continue...`),
       ].join("\n"),

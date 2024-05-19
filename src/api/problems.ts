@@ -1,7 +1,4 @@
-import {
-  DOMParser,
-  type Element,
-} from "@b-fuze/deno-dom"
+import { DOMParser, type Element } from "../deps.ts"
 
 export type Problem = {
   /**
@@ -88,7 +85,13 @@ export const fetchProblems = async (contestId: string) => {
     if (!id || !href || !title || !runTimeLimitation || !memoryLimitation) {
       throw new Error("Failed to parse problem. " + rowElm.outerHTML)
     }
-    problems.push({ id, url: new URL(href, "https://atcoder.jp"), title, runTimeLimitation, memoryLimitation })
+    problems.push({
+      id,
+      url: new URL(href, "https://atcoder.jp"),
+      title,
+      runTimeLimitation,
+      memoryLimitation,
+    })
   }
 
   return problems

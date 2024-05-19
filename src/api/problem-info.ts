@@ -1,4 +1,4 @@
-import { DOMParser } from "@b-fuze/deno-dom"
+import { DOMParser } from "../deps.ts"
 import { sleep } from "../utils.ts"
 
 type Test = {
