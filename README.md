@@ -1,11 +1,17 @@
-# AC CLI
+# AtCoder
 
 Utility CLI for AtCoder.
 
 ## Installation
 
 ```sh
-deno install --global --allow-net --allow-read --allow-write --name=atcoder jsr:@r4ai/atcoder-cli
+deno install --global --force \
+     --allow-net \
+     --allow-read \
+     --allow-write \
+     --allow-env \
+     --name=atcoder \
+     jsr:@r4ai/atcoder-cli
 ```
 
 ## Usage
@@ -40,5 +46,5 @@ export default defineConfig({
 Install CLI from local source:
 
 ```sh
-deno install --global --force --allow-net --allow-read --allow-write --config=deno.jsonc --name=atcoder ./src/main.ts
+deno install --global --force --allow-net --allow-read --allow-write --allow-env --config=deno.jsonc --name=atcoder ./src/main.ts
 ```
