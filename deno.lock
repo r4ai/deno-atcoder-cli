@@ -2,6 +2,7 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "jsr:@b-fuze/deno-dom@0.1.43": "jsr:@b-fuze/deno-dom@0.1.43",
       "jsr:@cliffy/command@1.0.0-rc.4": "jsr:@cliffy/command@1.0.0-rc.4",
       "jsr:@cliffy/flags@1.0.0-rc.4": "jsr:@cliffy/flags@1.0.0-rc.4",
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
@@ -18,6 +19,9 @@
       "npm:lefthook": "npm:lefthook@1.6.12"
     },
     "jsr": {
+      "@b-fuze/deno-dom@0.1.43": {
+        "integrity": "6e99c4645ab897520fa04d60d0096aa1f49ff9a8950db7f258511419ab08d754"
+      },
       "@cliffy/command@1.0.0-rc.4": {
         "integrity": "709884ffe0f53ce3edafa92b58223634397878fbf6dcabe0c74ea0108273b9f7",
         "dependencies": [
@@ -352,6 +356,7 @@
   },
   "workspace": {
     "dependencies": [
+      "jsr:@b-fuze/deno-dom@0.1.43",
       "jsr:@cliffy/command@1.0.0-rc.4",
       "jsr:@std/fs@^0.229.1",
       "jsr:@std/path@^0.225.1",

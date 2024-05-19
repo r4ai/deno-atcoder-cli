@@ -2,6 +2,8 @@
 
 import { atcoder } from "./cli.ts"
 
+export { type Config, defineConfig } from "./config.ts"
+
 if (import.meta.main) {
   atcoder.parse(Deno.args)
 }

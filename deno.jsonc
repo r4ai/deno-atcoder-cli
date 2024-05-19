@@ -1,14 +1,17 @@
 {
   "name": "@r4ai/atcoder-cli",
   "version": "0.1.0",
-  "exports": "./src/mod.ts",
+  "exports": "./src/main.ts",
+  "publish": {
+    "include": ["src/**/*", "LICENSE", "README.md", "deno.jsonc", "deno.lock"]
+  },
   "tasks": {},
   "imports": {
     "@std/fs": "jsr:@std/fs@^0.229.1",
     "@std/path": "jsr:@std/path@^0.225.1",
     "@cliffy/command": "jsr:@cliffy/command@1.0.0-rc.4",
     "defu": "npm:defu@^6.1.4",
-    "@b-fuze/deno-dom": "https://deno.land/x/deno_dom@v0.1.45/deno-dom-wasm.ts"
+    "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@0.1.43"
   },
   "fmt": {
     "semiColons": false

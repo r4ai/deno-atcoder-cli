@@ -48,11 +48,13 @@ atcoder.command("gen")
       // touch abc123/A/a.cpp
       const file = path.join(
         problemDir,
-        `${config.source.stem(problem)}.${config.source.extension(problem)}`,
+        `${config.source.stem?.(problem)}.${
+          config.source.extension?.(problem)
+        }`,
       )
       await Deno.writeTextFile(
         file,
-        config.source.template(problem),
+        config.source.template?.(problem) ?? "",
       )
 
       // touch abc123/A/in_1.txt abc123/A/out_1.txt ...

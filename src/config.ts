@@ -76,7 +76,7 @@ export type Config = {
     | Record<string, string>
 }
 
-export const defaultConfig = {
+export const defaultConfig: Required<Config> = {
   contestsDir: "contests",
   source: {
     stem: (problem: Problem & ProblemInfo) => problem.id.toLowerCase(),
@@ -84,7 +84,7 @@ export const defaultConfig = {
     template: "",
   },
   templates: {},
-} as const satisfies Required<Config>
+}
 
 export const defineConfig = (
   config: Partial<Config>,
@@ -102,7 +102,7 @@ const getLocalConfig = async (dir: string): Promise<Config> => {
   const configFileNames = ["ac.config.ts", "ac.config.js"]
   const configFile = configFileNames.find((name) => fs.existsSync(name))
   if (configFile) {
-    const module = await import(path.join(Deno.cwd(), configFile))
+    const module = await import(path.resolve(dir, configFile))
     return module.default
   }
 
