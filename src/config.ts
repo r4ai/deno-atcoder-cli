@@ -100,7 +100,7 @@ const getLocalConfig = async (dir: string): Promise<Config> => {
   const configFileNames = ["ac.config.ts", "ac.config.js"]
   const configFile = configFileNames.find((name) => fs.existsSync(name))
   if (configFile) {
-    const module = await import(path.resolve(dir, configFile))
+    const module = await import("file://" + path.resolve(dir, configFile))
     return module.default
   }
 
