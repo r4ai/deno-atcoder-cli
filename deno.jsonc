@@ -7,7 +7,8 @@
     "@std/fs": "jsr:@std/fs@^0.229.1",
     "@std/path": "jsr:@std/path@^0.225.1",
     "@cliffy/command": "jsr:@cliffy/command@1.0.0-rc.4",
-    "defu": "npm:defu@^6.1.4"
+    "defu": "npm:defu@^6.1.4",
+    "@b-fuze/deno-dom": "https://deno.land/x/deno_dom@v0.1.45/deno-dom-wasm.ts"
   },
   "fmt": {
     "semiColons": false

@@ -1,7 +1,7 @@
 import {
   DOMParser,
   type Element,
-} from "https://deno.land/x/deno_dom@v0.1.45/deno-dom-wasm.ts"
+} from "@b-fuze/deno-dom"
 
 export type Problem = {
   /**
