@@ -1,4 +1,4 @@
-import { defineConfig } from "jsr:@r4ai/atcoder-cli@0.2.5"
+import { defineConfig } from "jsr:@r4ai/atcoder-cli@0.3.0"
 
 export default defineConfig({
   source: {

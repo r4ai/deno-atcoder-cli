@@ -9,7 +9,7 @@
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
       "jsr:@david/dax@0.41.0": "jsr:@david/dax@0.41.0",
       "jsr:@david/which@^0.4.1": "jsr:@david/which@0.4.1",
-      "jsr:@r4ai/atcoder-cli@0.2.5": "jsr:@r4ai/atcoder-cli@0.2.5",
+      "jsr:@r4ai/atcoder-cli@0.3.0": "jsr:@r4ai/atcoder-cli@0.3.0",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
       "jsr:@std/assert@^0.225.2": "jsr:@std/assert@0.225.2",
       "jsr:@std/bytes@^0.221.0": "jsr:@std/bytes@0.221.0",
