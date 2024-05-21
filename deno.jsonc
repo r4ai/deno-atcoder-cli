@@ -1,6 +1,6 @@
 {
   "name": "@r4ai/atcoder-cli",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "exports": "./src/main.ts",
   "publish": {
     "include": ["src/**/*", "LICENSE", "README.md", "deno.jsonc", "deno.lock"]
