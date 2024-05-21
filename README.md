@@ -53,36 +53,36 @@ atcoder gen abc123
 This will create a new directory `contests/abc123` with the following structure:
 
 ```txt
-contests/abc123
-├── a/
+contests/abc123/
+├── A/
 │  ├── a.py
 │  ├── metadata.json
 │  └── tests
-├── b/
+├── B/
 │  ├── b.py
 │  ├── metadata.json
 │  └── tests
-├── c/
+├── C/
 │  ├── c.py
 │  ├── metadata.json
 │  └── tests
-├── d/
+├── D/
 │  ├── d.py
 │  ├── metadata.json
 │  └── tests
-├── e/
+├── E/
 │  ├── e.py
 │  ├── metadata.json
 │  └── tests
-├── f/
+├── F/
 │  ├── f.py
 │  ├── metadata.json
 │  └── tests
-├── g/
+├── G/
 │  ├── g.py
 │  ├── metadata.json
 │  └── tests
-└── h/
+└── Ex/
    ├── h.py
    ├── metadata.json
    └── tests
@@ -110,15 +110,15 @@ for i, c in enumerate(C):
 Run tests for each problem:
 
 ```sh
-$ cd contests/abc300/a
+$ cd contests/abc300/A
 
 $ atcoder test
 running 1 test from ./tests/test.ts
-abc300/a ...
+abc300/A ...
   tests/in_1.txt ... ok (20ms)
   tests/in_2.txt ... ok (18ms)
   tests/in_3.txt ... ok (19ms)
-abc300/a ... ok (97ms)
+abc300/A ... ok (97ms)
 
 ok | 1 passed (3 steps) | 0 failed (100ms)
 ```
@@ -155,7 +155,7 @@ atcoder gen abc123
 To run tests:
 
 ```sh
-cd contests/abc123/a
+cd contests/abc123/A
 atcoder test
 ```
 
