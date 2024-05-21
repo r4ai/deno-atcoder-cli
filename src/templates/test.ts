@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run
+#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net
 
 import * as path from "jsr:@std/path@0.225.1"
 import { $ } from "jsr:@david/dax@0.41.0"

@@ -2,7 +2,7 @@ import { defu, fs, path } from "./deps.ts"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
 import type { DeepRequired } from "./utils.ts"
 
-export const CONFIG_FILE_NAMES = ["ac.config.ts", "ac.config.js"] as const
+export const CONFIG_FILE_NAMES = ["atcoder.config.ts", "atcoder.config.js"] as const
 
 export type Config = {
   /**

@@ -13,7 +13,6 @@ import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"
 import { getConfig } from "./config.ts"
 import { getProblemDir, type Metadata, METADATA_FILE_NAME } from "./metadata.ts"
-import { ansi } from "jsr:@cliffy/ansi@1.0.0-rc.4"
 
 export const atcoder = new Command()
   .name("atcoder")
@@ -163,7 +162,7 @@ atcoder.command("test")
       )
       Deno.exit(1)
     }
-    await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run tests/test.ts`.cwd(
+    await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run --allow-net tests/test.ts`.cwd(
       getProblemDir(Deno.cwd()) ?? Deno.cwd(),
     )
   })

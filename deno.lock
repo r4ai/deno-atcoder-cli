@@ -28,6 +28,7 @@
       "jsr:@std/path@^0.225.1": "jsr:@std/path@0.225.1",
       "jsr:@std/streams@0.221.0": "jsr:@std/streams@0.221.0",
       "jsr:@std/text@0.221": "jsr:@std/text@0.221.0",
+      "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:dedent@0.7.0": "npm:dedent@0.7.0",
       "npm:dedent@1.5.3": "npm:dedent@1.5.3",
       "npm:defu@6.1.4": "npm:defu@6.1.4",
@@ -310,6 +311,10 @@
       },
       "@types/estree@1.0.5": {
         "integrity": "sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==",
+        "dependencies": {}
+      },
+      "@types/node@18.16.19": {
+        "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==",
         "dependencies": {}
       },
       "@vitest/expect@1.6.0": {
