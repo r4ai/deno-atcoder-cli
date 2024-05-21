@@ -49,7 +49,7 @@ export type ProblemInfo = {
   tests: Test[]
 }
 
-type CachedProblem = {
+type CachedProblemInfo = {
   problem: ProblemInfo
   time: number
 }
@@ -58,7 +58,7 @@ export const getProblemInfo = async (
   contestId: string,
   problemId: string,
   problemUrl: URL,
-) => {
+): Promise<ProblemInfo> => {
   const cachedProblemInfo = getCachedProblemInfo(contestId, problemId)
   if (cachedProblemInfo && Date.now() - cachedProblemInfo.time < 1000 * 3) {
     return cachedProblemInfo.problem
@@ -70,14 +70,17 @@ export const getProblemInfo = async (
   return problemInfo
 }
 
-const getCachedProblemInfo = (contestId: string, problemId: string) => {
+const getCachedProblemInfo = (
+  contestId: string,
+  problemId: string,
+): CachedProblemInfo | undefined => {
   const cachedProblemInfoData = localStorage.getItem(
     `problem-${contestId}-${problemId}`,
   )
   if (!cachedProblemInfoData) {
     return undefined
   }
-  const { problem, time }: CachedProblem = JSON.parse(cachedProblemInfoData)
+  const { problem, time }: CachedProblemInfo = JSON.parse(cachedProblemInfoData)
   return { problem, time }
 }
 
@@ -87,7 +90,7 @@ const cacheProblemInfo = (
   problem: ProblemInfo,
 ) => {
   const now = Date.now()
-  const cachedProblemInfo: CachedProblem = { problem, time: now }
+  const cachedProblemInfo: CachedProblemInfo = { problem, time: now }
   localStorage.setItem(
     `problem-${contestId}-${problemId}`,
     JSON.stringify(cachedProblemInfo),
@@ -96,7 +99,7 @@ const cacheProblemInfo = (
 
 const fetchProblemInfo = async (
   problemUrl: URL,
-) => {
+): Promise<ProblemInfo> => {
   const res = await fetch(problemUrl)
   if (!res.ok) {
     throw new Error(

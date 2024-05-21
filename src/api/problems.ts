@@ -38,7 +38,7 @@ type CachedProblems = {
   time: number
 }
 
-export const getProblems = async (contestId: string) => {
+export const getProblems = async (contestId: string): Promise<Problems> => {
   const cachedProblems = getCachedProblems(contestId)
   if (cachedProblems && Date.now() - cachedProblems.time < 1000 * 3) {
     return cachedProblems.problems
@@ -49,7 +49,7 @@ export const getProblems = async (contestId: string) => {
   return problems
 }
 
-export const fetchProblems = async (contestId: string) => {
+export const fetchProblems = async (contestId: string): Promise<Problems> => {
   const res = await fetch(`https://atcoder.jp/contests/${contestId}/tasks`)
   if (!res.ok) throw new Error("Failed to fetch contest info")
 
@@ -103,12 +103,9 @@ const cacheProblems = (contestId: string, problems: Problems) => {
   localStorage.setItem(`problems-${contestId}`, JSON.stringify(cachedProblems))
 }
 
-const getCachedProblems = (contestId: string) => {
+const getCachedProblems = (contestId: string): CachedProblems | undefined => {
   const cachedProblemsData = localStorage.getItem(`problems-${contestId}`)
   if (!cachedProblemsData) return undefined
   const { problems, time }: CachedProblems = JSON.parse(cachedProblemsData)
   return { problems, time }
 }
-
-await getProblems("abc200")
-await getProblems("abc200")

@@ -13,7 +13,7 @@ type CachedContests = {
   time: number
 }
 
-export const getContests = async () => {
+export const getContests = async (): Promise<Contests> => {
   const now = Date.now()
   const cachedContestsData = localStorage.getItem("contests")
   if (cachedContestsData) {
@@ -34,7 +34,7 @@ export const getContests = async () => {
   return contests
 }
 
-const fetchContests = async () => {
+const fetchContests = async (): Promise<Contests> => {
   const res = await fetch(
     "https://kenkoooo.com/atcoder/resources/contests.json",
   )
