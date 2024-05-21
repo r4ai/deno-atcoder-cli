@@ -15,6 +15,7 @@ export {
   type Metadata,
   METADATA_FILE_NAME,
 } from "./metadata.ts"
+export type * from "./api/mod.ts"
 
 if (import.meta.main) {
   atcoder.parse(Deno.args)
