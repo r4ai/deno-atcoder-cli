@@ -1,0 +1,19 @@
+{
+  "contest": "abs",
+  "problem": "ABC081A",
+  "source": {
+    "path": "abc081a.py",
+    "compileCommand": "python3 -m py_compile abc081a.py",
+    "executeCommand": "python3 abc081a.py"
+  },
+  "tests": [
+    {
+      "input": "tests/in_1.txt",
+      "output": "tests/out_1.txt"
+    },
+    {
+      "input": "tests/in_2.txt",
+      "output": "tests/out_2.txt"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "contest": "abs",
+  "problem": "ABC085C",
+  "source": {
+    "path": "abc085c.py",
+    "compileCommand": "python3 -m py_compile abc085c.py",
+    "executeCommand": "python3 abc085c.py"
+  },
+  "tests": [
+    {
+      "input": "tests/in_1.txt",
+      "output": "tests/out_1.txt"
+    },
+    {
+      "input": "tests/in_2.txt",
+      "output": "tests/out_2.txt"
+    },
+    {
+      "input": "tests/in_3.txt",
+      "output": "tests/out_3.txt"
+    },
+    {
+      "input": "tests/in_4.txt",
+      "output": "tests/out_4.txt"
+    }
+  ]
+}
