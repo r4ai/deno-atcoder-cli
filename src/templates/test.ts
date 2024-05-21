@@ -27,7 +27,7 @@ if (!metadata) {
 describe(`${metadata.contest}/${metadata.problem}`, () => {
   beforeAll(async () => {
     // Compile
-    await $.raw`${metadata.source.compileCommand}`
+    await $.raw`${metadata.source.compileCommand}`.cwd(problemDir)
   })
 
   for (const test of metadata.tests) {
@@ -40,7 +40,7 @@ describe(`${metadata.contest}/${metadata.problem}`, () => {
       )).trimEnd()
       const actual = await $.raw`${metadata.source.executeCommand}`.stdinText(
         input,
-      ).text()
+      ).cwd(problemDir).text()
       assertEquals(
         actual,
         expected,

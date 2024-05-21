@@ -150,22 +150,7 @@ atcoder.command("gen")
 
 atcoder.command("test")
   .action(async () => {
-    const problemDir = getProblemDir(Deno.cwd())
-    if (!problemDir) {
-      console.error(
-        [
-          colors.red.bold(
-            `Failed to run test. Make sure you are in a problem directory.`,
-          ),
-          "",
-          colors.bold("Example:"),
-          "  $ cd /path/to/contest/abc123/a",
-          "  $ atcoder test",
-        ].join("\n"),
-      )
-      Deno.exit(1)
-    }
-    await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run --allow-net tests/test.ts`.cwd(
+    await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run --allow-net`.cwd(
       getProblemDir(Deno.cwd()) ?? Deno.cwd(),
     )
   })
