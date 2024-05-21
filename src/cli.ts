@@ -1,4 +1,5 @@
 import {
+  $,
   colors,
   Command,
   CompletionsCommand,
@@ -11,6 +12,8 @@ import { getContests } from "./api/contests.ts"
 import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"
 import { getConfig } from "./config.ts"
+import { getProblemDir, type Metadata, METADATA_FILE_NAME } from "./metadata.ts"
+import { ansi } from "jsr:@cliffy/ansi@1.0.0-rc.4"
 
 export const atcoder = new Command()
   .name("atcoder")
@@ -72,23 +75,24 @@ atcoder.command("gen")
       const problem = { ...problemMetaData, ...problemInfo }
 
       // mkdir abc123/A
-      const problemDir = path.join(contestDir, problem.id)
+      const problemDir = path.resolve(contestDir, problem.id)
       await Deno.mkdir(problemDir, { recursive: true })
 
       // touch abc123/A/a.cpp
-      const file = path.join(
+      const filename = `${config.source.stem(problem)}.${
+        config.source.extension(problem)
+      }`
+      const filepath = path.resolve(
         problemDir,
-        `${config.source.stem?.(problem)}.${
-          config.source.extension?.(problem)
-        }`,
+        filename,
       )
       await Deno.writeTextFile(
-        file,
-        config.source.template?.(problem) ?? "",
+        filepath,
+        config.source.template(problem),
       )
 
-      // touch abc123/A/in_1.txt abc123/A/out_1.txt ...
-      const testsDir = path.join(problemDir, "tests")
+      // touch abc123/A/tests/in_1.txt abc123/A/tests/out_1.txt ...
+      const testsDir = path.resolve(problemDir, "tests")
       await Deno.mkdir(testsDir, { recursive: true })
       problem.tests.forEach(async (testCase, i) => {
         await Deno.writeTextFile(
@@ -100,6 +104,34 @@ atcoder.command("gen")
           testCase.output,
         )
       })
+
+      // touch abc123/A/tests/metadata.json
+      const metadata: Metadata = {
+        contest: contestId,
+        problem: problem.id,
+        source: {
+          path: filename,
+          compileCommand: config.source.compileCommand(filename, problem),
+          executeCommand: config.source.executeCommand(filename, problem),
+        },
+        tests: problem.tests.map((_, i) => ({
+          input: path.join("tests", `in_${i + 1}.txt`),
+          output: path.join("tests", `out_${i + 1}.txt`),
+        })),
+      }
+      await Deno.writeTextFile(
+        path.resolve(problemDir, METADATA_FILE_NAME),
+        JSON.stringify(metadata, null, 2),
+      )
+
+      // touch abc123/A/tests/test.ts
+      const testFile = await Deno.readTextFile(
+        path.resolve(import.meta.dirname!, "templates", "test.ts"),
+      )
+      await Deno.writeTextFile(
+        path.resolve(testsDir, "test.ts"),
+        testFile,
+      )
     }
 
     console.log(
@@ -111,5 +143,27 @@ atcoder.command("gen")
         "",
         colors.dim(` Press Enter to continue...`),
       ].join("\n"),
+    )
+  })
+
+atcoder.command("test")
+  .action(async () => {
+    const problemDir = getProblemDir(Deno.cwd())
+    if (!problemDir) {
+      console.error(
+        [
+          colors.red.bold(
+            `Failed to run test. Make sure you are in a problem directory.`,
+          ),
+          "",
+          colors.bold("Example:"),
+          "  $ cd /path/to/contest/abc123/a",
+          "  $ atcoder test",
+        ].join("\n"),
+      )
+      Deno.exit(1)
+    }
+    await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run tests/test.ts`.cwd(
+      getProblemDir(Deno.cwd()) ?? Deno.cwd(),
     )
   })

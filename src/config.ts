@@ -1,5 +1,8 @@
 import { defu, fs, path } from "./deps.ts"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
+import type { DeepRequired } from "./utils.ts"
+
+export const CONFIG_FILE_NAMES = ["ac.config.ts", "ac.config.js"] as const
 
 export type Config = {
   /**
@@ -53,6 +56,28 @@ export type Config = {
     extension?: string | ((problem: Problem & ProblemInfo) => string)
 
     /**
+     * ソースファイルのコンパイルコマンド
+     * @argument problem 問題の情報
+     * @returns コンパイルコマンド
+     * @default (sourcePath: string) => `g++ -std=gnu++20 -Wall -Wextra -O2 -o a.out ${sourcePath}`
+     * @see https://img.atcoder.jp/file/language-update/language-list.html
+     */
+    compileCommand?:
+      | string
+      | ((sourcePath: string, problem: Problem & ProblemInfo) => string)
+
+    /**
+     * ソースファイルの実行コマンド
+     * @argument problem 問題の情報
+     * @returns 実行コマンド
+     * @default "./a.out"
+     * @see https://img.atcoder.jp/file/language-update/language-list.html
+     */
+    executeCommand?:
+      | string
+      | ((sourcePath: string, problem: Problem & ProblemInfo) => string)
+
+    /**
      * ソースファイルのテンプレート
      * @argument problem 問題の情報
      * @default ""
@@ -74,11 +99,14 @@ export type Config = {
     | Record<string, string>
 }
 
-export const defaultConfig: Required<Config> = {
+export const defaultConfig: DeepRequired<Config> = {
   contestsDir: "contests",
   source: {
     stem: (problem: Problem & ProblemInfo) => problem.id.toLowerCase(),
     extension: "cpp",
+    compileCommand: (sourcePath: string) =>
+      `g++ -std=gnu++20 -Wall -Wextra -O2 -o a.out ${sourcePath}`,
+    executeCommand: "./a.out",
     template: "",
   },
   templates: {},
@@ -97,8 +125,7 @@ const getLocalConfig = async (dir: string): Promise<Config> => {
     return defaultConfig
   }
 
-  const configFileNames = ["ac.config.ts", "ac.config.js"]
-  const configFile = configFileNames.find((name) => fs.existsSync(name))
+  const configFile = CONFIG_FILE_NAMES.find((name) => fs.existsSync(name))
   if (configFile) {
     const module = await import("file://" + path.resolve(dir, configFile))
     return module.default
@@ -139,7 +166,7 @@ const callable = <T>(obj: T): Callable<T> => {
 
 export const getConfig = async (
   config?: Partial<Config>,
-): Promise<Callable<Required<Config>>> => {
+): Promise<Callable<DeepRequired<Config>>> => {
   const localConfig = await getLocalConfig(Deno.cwd())
   const mergedConfig = defu(config, localConfig, defaultConfig)
   return callable(mergedConfig)
