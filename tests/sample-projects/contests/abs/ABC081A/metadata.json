@@ -1,0 +1,19 @@
+{
+  "contest": "abs",
+  "problem": "ABC081A",
+  "source": {
+    "path": "abc081a.cpp",
+    "compileCommand": "g++ -std=gnu++20 -Wall -Wextra -O2 -o a.out abc081a.cpp",
+    "executeCommand": "./a.out"
+  },
+  "tests": [
+    {
+      "input": "tests/in_1.txt",
+      "output": "tests/out_1.txt"
+    },
+    {
+      "input": "tests/in_2.txt",
+      "output": "tests/out_2.txt"
+    }
+  ]
+}

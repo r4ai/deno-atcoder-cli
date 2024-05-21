@@ -1,4 +1,4 @@
-import { DOMParser } from "../deps.ts"
+import { DOMParser, type Element } from "../deps.ts"
 import { sleep } from "../utils.ts"
 
 type Test = {
@@ -111,16 +111,16 @@ const fetchProblemInfo = async (
 
   const doc = new DOMParser().parseFromString(contestPage, "text/html")!
 
-  const problem = doc.querySelector(
-    "#task-statement > span > span.lang-ja > div:nth-child(2)",
-  )?.innerHTML
+  const parts = doc.querySelectorAll(
+    "#task-statement > span > span.lang-ja > div.part",
+  ) as unknown as Element[]
+
+  const problem = parts.at(0)?.innerHTML
   if (!problem) {
     throw new Error("Failed to parse problem")
   }
 
-  const constraints = doc.querySelector(
-    "#task-statement > span > span.lang-ja > div:nth-child(3)",
-  )?.innerHTML
+  const constraints = parts.at(1)?.innerHTML
   if (!constraints) {
     throw new Error("Failed to parse constraints")
   }
@@ -140,15 +140,9 @@ const fetchProblemInfo = async (
   }
 
   const tests: Test[] = []
-  for (let i = 7; i < 100; i += 3) {
-    const input = doc.querySelector(
-      `#task-statement > span > span.lang-ja > div:nth-child(${i}) > section > pre`,
-    )?.innerText
-    const output = doc.querySelector(
-      `#task-statement > span > span.lang-ja > div:nth-child(${
-        i + 1
-      }) > section > pre`,
-    )?.innerText
+  for (let i = 2; i < parts.length; i += 2) {
+    const input = parts.at(i)?.querySelector("pre")?.textContent
+    const output = parts.at(i + 1)?.querySelector("pre")?.textContent
     if (!input || !output) {
       break
     }
