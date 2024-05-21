@@ -11,7 +11,7 @@ import {
 import { getContests } from "./api/contests.ts"
 import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"
-import { getConfig } from "./config.ts"
+import { getConfig, getConfigDir } from "./config.ts"
 import { getProblemDir, type Metadata, METADATA_FILE_NAME } from "./metadata.ts"
 
 export const atcoder = new Command()
@@ -29,7 +29,7 @@ atcoder.command("gen")
     return contests.map((contest) => contest.id)
   })
   .action(async ({ force }, contestId) => {
-    // const spinner = ora(`Generating contest: ${contestId}`).start()
+    const projectDir = getConfigDir(Deno.cwd()) ?? Deno.cwd()
     const config = await getConfig()
     const problems = await oraPromise(getProblems(contestId), {
       text: `Fetching problem list for ${contestId}`,
@@ -42,7 +42,10 @@ atcoder.command("gen")
         `,
     })
 
-    const contestDir = path.join(config.contestsDir(), contestId)
+    const contestsDir = path.isAbsolute(config.contestsDir())
+      ? config.contestsDir()
+      : path.resolve(projectDir, config.contestsDir())
+    const contestDir = path.resolve(contestsDir, contestId)
     if (force && fs.existsSync(contestDir)) {
       await Deno.remove(contestDir, { recursive: true })
     }
@@ -95,11 +98,11 @@ atcoder.command("gen")
       await Deno.mkdir(testsDir, { recursive: true })
       problem.tests.forEach(async (testCase, i) => {
         await Deno.writeTextFile(
-          path.join(testsDir, `in_${i + 1}.txt`),
+          path.resolve(testsDir, `in_${i + 1}.txt`),
           testCase.input,
         )
         await Deno.writeTextFile(
-          path.join(testsDir, `out_${i + 1}.txt`),
+          path.resolve(testsDir, `out_${i + 1}.txt`),
           testCase.output,
         )
       })
@@ -124,15 +127,15 @@ atcoder.command("gen")
       )
 
       // touch abc123/A/tests/test.ts
-      const testFile = await Deno.readTextFile(
-        path.resolve(import.meta.dirname!, "templates", "test.ts"),
-      )
+      const testFile = await (await fetch(
+        import.meta.resolve("./templates/test.ts"),
+      )).text()
       await Deno.writeTextFile(
         path.resolve(testsDir, "test.ts"),
         testFile,
         {
           mode: 0o755,
-        }
+        },
       )
     }
 
@@ -150,7 +153,8 @@ atcoder.command("gen")
 
 atcoder.command("test")
   .action(async () => {
-    await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run --allow-net`.cwd(
-      getProblemDir(Deno.cwd()) ?? Deno.cwd(),
-    )
+    await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run --allow-net`
+      .cwd(
+        getProblemDir(Deno.cwd()) ?? Deno.cwd(),
+      )
   })

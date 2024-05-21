@@ -14,7 +14,7 @@ export type Metadata = {
 }
 
 export const getMetadata = (dir: string): Metadata | undefined => {
-  if (!fs.existsSync(dir) || dir === "/") {
+  if (!fs.existsSync(dir)) {
     return undefined
   }
 
@@ -25,11 +25,14 @@ export const getMetadata = (dir: string): Metadata | undefined => {
   }
 
   const parentDir = path.dirname(dir)
+  if (parentDir === dir) {
+    return undefined
+  }
   return getMetadata(parentDir)
 }
 
 export const getProblemDir = (dir: string): string | undefined => {
-  if (!fs.existsSync(dir) || dir === "/") {
+  if (!fs.existsSync(dir)) {
     return undefined
   }
 
@@ -38,5 +41,8 @@ export const getProblemDir = (dir: string): string | undefined => {
   }
 
   const parentDir = path.dirname(dir)
+  if (parentDir === dir) {
+    return undefined
+  }
   return getProblemDir(parentDir)
 }

@@ -2,7 +2,10 @@ import { defu, fs, path } from "./deps.ts"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
 import type { DeepRequired } from "./utils.ts"
 
-export const CONFIG_FILE_NAMES = ["atcoder.config.ts", "atcoder.config.js"] as const
+export const CONFIG_FILE_NAMES = [
+  "atcoder.config.ts",
+  "atcoder.config.js",
+] as const
 
 export type Config = {
   /**
@@ -121,7 +124,7 @@ export const defineConfig = (
 }
 
 const getLocalConfig = async (dir: string): Promise<Config> => {
-  if (!fs.existsSync(dir) || dir === "/") {
+  if (!fs.existsSync(dir)) {
     return defaultConfig
   }
 
@@ -132,7 +135,27 @@ const getLocalConfig = async (dir: string): Promise<Config> => {
   }
 
   const parentDir = path.dirname(dir)
+  if (parentDir === dir) {
+    return defaultConfig
+  }
   return getLocalConfig(parentDir)
+}
+
+export const getConfigDir = (dir: string): string | undefined => {
+  if (!fs.existsSync(dir)) {
+    return undefined
+  }
+
+  const configFile = CONFIG_FILE_NAMES.find((name) => fs.existsSync(name))
+  if (configFile) {
+    return dir
+  }
+
+  const parentDir = path.dirname(dir)
+  if (parentDir === dir) {
+    return undefined
+  }
+  return getConfigDir(parentDir)
 }
 
 // deno-lint-ignore no-explicit-any
