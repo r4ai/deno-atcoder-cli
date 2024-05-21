@@ -9,6 +9,7 @@
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
       "jsr:@david/dax@0.41.0": "jsr:@david/dax@0.41.0",
       "jsr:@david/which@^0.4.1": "jsr:@david/which@0.4.1",
+      "jsr:@r4ai/atcoder-cli@0.2.0": "jsr:@r4ai/atcoder-cli@0.2.0",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
       "jsr:@std/assert@^0.225.2": "jsr:@std/assert@0.225.2",
       "jsr:@std/bytes@^0.221.0": "jsr:@std/bytes@0.221.0",
@@ -27,6 +28,7 @@
       "jsr:@std/path@^0.221.0": "jsr:@std/path@0.221.0",
       "jsr:@std/path@^0.225.1": "jsr:@std/path@0.225.1",
       "jsr:@std/streams@0.221.0": "jsr:@std/streams@0.221.0",
+      "jsr:@std/testing": "jsr:@std/testing@0.224.0",
       "jsr:@std/text@0.221": "jsr:@std/text@0.221.0",
       "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:dedent@0.7.0": "npm:dedent@0.7.0",
@@ -79,6 +81,18 @@
       },
       "@david/which@0.4.1": {
         "integrity": "896a682b111f92ab866cc70c5b4afab2f5899d2f9bde31ed00203b9c250f225e"
+      },
+      "@r4ai/atcoder-cli@0.2.0": {
+        "integrity": "8480b0875c5a403a723b93b7560f0bdfea21b7a9e53b533b596f198efec237a1",
+        "dependencies": [
+          "jsr:@b-fuze/deno-dom@0.1.43",
+          "jsr:@cliffy/ansi@1.0.0-rc.4",
+          "jsr:@cliffy/command@1.0.0-rc.4",
+          "jsr:@std/fs@0.229.1",
+          "npm:dedent@1.5.3",
+          "npm:defu@6.1.4",
+          "npm:ora@8.0.1"
+        ]
       },
       "@std/assert@0.221.0": {
         "integrity": "a5f1aa6e7909dbea271754fd4ab3f4e687aeff4873b4cef9a320af813adb489a"
@@ -142,6 +156,9 @@
         "dependencies": [
           "jsr:@std/io@^0.221.0"
         ]
+      },
+      "@std/testing@0.224.0": {
+        "integrity": "371b8a929aa7132240d5dd766a439be8f780ef5c176ab194e0bcab72370c761e"
       },
       "@std/text@0.221.0": {
         "integrity": "a2f89ceb0d8851cd33e6774064621a1da9fbc36578cf4f02c5b5bcd7e8c84b67",

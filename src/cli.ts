@@ -130,6 +130,9 @@ atcoder.command("gen")
       await Deno.writeTextFile(
         path.resolve(testsDir, "test.ts"),
         testFile,
+        {
+          mode: 0o755,
+        }
       )
     }
 

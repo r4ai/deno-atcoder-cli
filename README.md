@@ -47,8 +47,7 @@ export default defineConfig({
   contestsDir: "contests",
   source: {
     extension: "py",
-    compileCommand: (source) =>
-      `python3 -m py_compile ${source} && python3.11 ${source} ONLINE_JUDGE 2> /dev/null`,
+    compileCommand: (source) => `python3 -m py_compile ${source}`,
     executeCommand: (source) => `python3 ${source}`,
   },
 });

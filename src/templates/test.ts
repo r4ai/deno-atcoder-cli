@@ -3,11 +3,7 @@
 import * as path from "jsr:@std/path@0.225.1"
 import { $ } from "jsr:@david/dax@0.41.0"
 import { assertEquals } from "jsr:@std/assert@^0.225.2"
-import {
-  beforeAll,
-  describe,
-  it,
-} from "https://deno.land/std@0.224.0/testing/bdd.ts"
+import { beforeAll, describe, it } from "jsr:@std/testing/bdd"
 import {
   getMetadata,
   getProblemDir,
@@ -36,12 +32,15 @@ describe(`${metadata.contest}/${metadata.problem}`, () => {
 
   for (const test of metadata.tests) {
     it(test.input, async () => {
-      const actual = await $.raw`${metadata.source.executeCommand} < ${
-        path.resolve(problemDir, test.input)
-      }`.text()
-      const expected = await Deno.readTextFile(
+      const input = (await Deno.readTextFile(
+        path.resolve(problemDir, test.input),
+      )).trimEnd()
+      const expected = (await Deno.readTextFile(
         path.resolve(problemDir, test.output),
-      )
+      )).trimEnd()
+      const actual = await $.raw`${metadata.source.executeCommand}`.stdinText(
+        input,
+      ).text()
       assertEquals(
         actual,
         expected,
