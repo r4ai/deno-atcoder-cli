@@ -1,10 +1,10 @@
 {
   "contest": "abc300",
-  "problem": "c",
+  "problem": "Ex",
   "source": {
-    "path": "c.py",
-    "compileCommand": "python3 -m py_compile c.py",
-    "executeCommand": "python3 c.py"
+    "path": "ex.py",
+    "compileCommand": "python3 -m py_compile ex.py",
+    "executeCommand": "python3 ex.py"
   },
   "tests": [
     {
@@ -22,6 +22,10 @@
     {
       "input": "tests/in_4.txt",
       "output": "tests/out_4.txt"
+    },
+    {
+      "input": "tests/in_5.txt",
+      "output": "tests/out_5.txt"
     }
   ]
 }

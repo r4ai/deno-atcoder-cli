@@ -1,6 +1,6 @@
 {
   "contest": "abc300",
-  "problem": "d",
+  "problem": "D",
   "source": {
     "path": "d.py",
     "compileCommand": "python3 -m py_compile d.py",

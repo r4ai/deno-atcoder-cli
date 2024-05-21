@@ -9,7 +9,7 @@ export const CONFIG_FILE_NAMES = [
 
 export type Config = {
   /**
-   * コンテストのディレクトリを保存するディレクトリのパス。
+   * コンテストのディレクトリを保存するディレクトリのパス
    * @default "contests"
    * @example
    * ```
@@ -36,6 +36,13 @@ export type Config = {
    * ```
    */
   contestsDir: string
+
+  /**
+   * 各問題のディレクトリを保存するディレクトリのパス
+   * @default (problem: Problem & ProblemInfo) => problem.id
+   * @example "A", "B", "C", "Ex", ...
+   */
+  problemDir: string | ((problem: Problem & ProblemInfo) => string)
 
   /**
    * 問題ごとに生成するソースファイル
@@ -104,6 +111,7 @@ export type Config = {
 
 export const defaultConfig: DeepRequired<Config> = {
   contestsDir: "contests",
+  problemDir: (problem: Problem & ProblemInfo) => problem.id,
   source: {
     stem: (problem: Problem & ProblemInfo) => problem.id.toLowerCase(),
     extension: "cpp",

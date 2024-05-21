@@ -1,10 +1,10 @@
 {
   "contest": "abc300",
-  "problem": "h",
+  "problem": "A",
   "source": {
-    "path": "h.py",
-    "compileCommand": "python3 -m py_compile h.py",
-    "executeCommand": "python3 h.py"
+    "path": "a.py",
+    "compileCommand": "python3 -m py_compile a.py",
+    "executeCommand": "python3 a.py"
   },
   "tests": [
     {
@@ -18,14 +18,6 @@
     {
       "input": "tests/in_3.txt",
       "output": "tests/out_3.txt"
-    },
-    {
-      "input": "tests/in_4.txt",
-      "output": "tests/out_4.txt"
-    },
-    {
-      "input": "tests/in_5.txt",
-      "output": "tests/out_5.txt"
     }
   ]
 }

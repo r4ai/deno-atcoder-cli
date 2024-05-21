@@ -63,12 +63,12 @@ atcoder.command("gen")
         ),
         {
           text:
-            `Fetching information for ${contestId}/${problemMetaData.id.toUpperCase()}`,
+            `Fetching information for ${contestId}/${problemMetaData.id}`,
           successText:
-            `Fetched information for ${contestId}/${problemMetaData.id.toUpperCase()}`,
+            `Fetched information for ${contestId}/${problemMetaData.id}`,
           failText: (err) =>
             dedent`
-              Failed to fetch information for ${contestId}/${problemMetaData.id.toUpperCase()}
+              Failed to fetch information for ${contestId}/${problemMetaData.id}
               ==================================================
               ${err}
             `,

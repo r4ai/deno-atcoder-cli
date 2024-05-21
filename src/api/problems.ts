@@ -3,7 +3,7 @@ import { DOMParser, type Element } from "../deps.ts"
 export type Problem = {
   /**
    * 問題 ID
-   * @example "a", "b", "c"
+   * @example "abc300_a", "b", "c"
    */
   id: string
 
@@ -64,12 +64,8 @@ export const fetchProblems = async (contestId: string): Promise<Problems> => {
   for (const row of problemsTableBodyRows) {
     const rowElm = row as Element
     const id = rowElm
-      .querySelector("td:nth-child(1) > a")
-      ?.getAttribute("href")
-      ?.split("/")
-      .pop()
-      ?.split("_")
-      .pop()
+      .querySelector("td:nth-child(1)")
+      ?.textContent?.trim()
     const href = rowElm.querySelector("td:nth-child(1) > a")?.getAttribute(
       "href",
     )
