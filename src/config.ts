@@ -7,6 +7,18 @@ export const CONFIG_FILE_NAMES = [
   "atcoder.config.js",
 ] as const
 
+export type Template = {
+  /**
+   * ファイル名
+   */
+  filename: string | ((problem: Problem & ProblemInfo) => string)
+
+  /**
+   * ファイルの内容
+   */
+  content: string | ((problem: Problem & ProblemInfo) => string)
+}
+
 export type Config = {
   /**
    * コンテストのディレクトリを保存するディレクトリのパス
@@ -90,23 +102,27 @@ export type Config = {
     /**
      * ソースファイルのテンプレート
      * @argument problem 問題の情報
+     * @returns ソースファイルの内容
      * @default ""
-     * @example
-     * ```ts
-     * source: "int main() { return 0; }"
-     * ```
+     * @example "int main() { return 0; }"
      */
     template?: string | ((problem: Problem & ProblemInfo) => string)
   }
 
   /**
    * 問題ごとに生成するその他のファイルたち
-   * @argument problem 問題の情報
-   * @returns Keyがファイル名、Valueがファイルの中身となるオブジェクト
+   * @default []
+   * @example
+   * ```
+   * [
+   *   {
+   *     filename: "CMakeLists.txt",
+   *     content: "cmake_minimum_required(VERSION 3.20)",
+   *   },
+   * ]
+   * ```
    */
-  templates?:
-    | ((problem: Problem & ProblemInfo) => Record<string, string>)
-    | Record<string, string>
+  templates?: Template[] | ((problem: Problem & ProblemInfo) => Template[])
 }
 
 export const defaultConfig: DeepRequired<Config> = {
@@ -120,7 +136,7 @@ export const defaultConfig: DeepRequired<Config> = {
     executeCommand: "./a.out",
     template: "",
   },
-  templates: {},
+  templates: [],
 }
 
 export const defineConfig = (
@@ -168,29 +184,33 @@ export const getConfigDir = (dir: string): string | undefined => {
 
 // deno-lint-ignore no-explicit-any
 type Callable<T> = T extends (...args: any[]) => any ? T
+  : T extends Array<unknown> ? () => T
   : T extends object ? { [K in keyof T]: Callable<T[K]> }
   : () => T
 
 const callable = <T>(obj: T): Callable<T> => {
   for (const key in obj) {
-    switch (typeof obj[key]) {
-      case "object": {
-        const value = obj[key]
-        // deno-lint-ignore ban-ts-comment
-        // @ts-expect-error
-        obj[key] = callable(value)
-        break
-      }
-      case "function":
-        break
-      default: {
-        const value = obj[key]
-        // deno-lint-ignore ban-ts-comment
-        // @ts-expect-error
-        obj[key] = () => value
-        break
-      }
+    if (typeof obj[key] === "function") {
+      continue
     }
+    if (Array.isArray(obj[key])) {
+      const value = obj[key]
+      // deno-lint-ignore ban-ts-comment
+      // @ts-expect-error
+      obj[key] = () => value
+      continue
+    }
+    if (typeof obj[key] === "object") {
+      const value = obj[key]
+      // deno-lint-ignore ban-ts-comment
+      // @ts-expect-error
+      obj[key] = callable(value)
+      continue
+    }
+    const value = obj[key]
+    // deno-lint-ignore ban-ts-comment
+    // @ts-expect-error
+    obj[key] = () => value
   }
   return obj as Callable<T>
 }

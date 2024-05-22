@@ -136,6 +136,24 @@ atcoder.command("gen")
           mode: 0o755,
         },
       )
+
+      // generate templates configured in `config.templates`
+      // touch abc123/A/CMakeLists.txt ...
+      for (const template of config.templates(problem)) {
+        const filename = typeof template.filename === "function"
+          ? template.filename(problem)
+          : template.filename
+        const filepath = path.isAbsolute(filename)
+          ? filename
+          : path.resolve(problemDir, filename)
+        const content = typeof template.content === "function"
+          ? template.content(problem)
+          : template.content
+        await Deno.writeTextFile(
+          filepath,
+          content,
+        )
+      }
     }
 
     console.log(
