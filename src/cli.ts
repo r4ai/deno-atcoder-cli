@@ -53,6 +53,25 @@ atcoder.command("gen")
       throw new Error(`Contest directory already exists: ${contestDir}`)
     }
 
+    const contest = await oraPromise(
+      async () => {
+        const contests = await getContests()
+        const contest = contests.find((contest) => contest.id === contestId)
+        if (!contest) throw new Error(`Contest not found: ${contestId}`)
+        return contest
+      },
+      {
+        text: `Fetching information for ${contestId}`,
+        successText: `Fetched information for ${contestId}`,
+        failText: (err) =>
+          dedent`
+            Failed to fetch information for ${contestId}
+            ==================================================
+            ${err}
+          `,
+      },
+    )
+
     await Deno.mkdir(contestDir, { recursive: true })
     for (const problemMetaData of problems) {
       const problemInfo = await oraPromise(
@@ -80,8 +99,8 @@ atcoder.command("gen")
       await Deno.mkdir(problemDir, { recursive: true })
 
       // touch abc123/A/a.cpp
-      const filename = `${config.source.stem(problem)}.${
-        config.source.extension(problem)
+      const filename = `${config.source.stem(problem, contest)}.${
+        config.source.extension(problem, contest)
       }`
       const filepath = path.resolve(
         problemDir,
@@ -89,7 +108,7 @@ atcoder.command("gen")
       )
       await Deno.writeTextFile(
         filepath,
-        config.source.template(problem),
+        config.source.template(problem, contest),
       )
 
       // touch abc123/A/tests/in_1.txt abc123/A/tests/out_1.txt ...
@@ -112,8 +131,16 @@ atcoder.command("gen")
         problem: problem.id,
         source: {
           path: filename,
-          compileCommand: config.source.compileCommand(filename, problem),
-          executeCommand: config.source.executeCommand(filename, problem),
+          compileCommand: config.source.compileCommand(
+            filename,
+            problem,
+            contest,
+          ),
+          executeCommand: config.source.executeCommand(
+            filename,
+            problem,
+            contest,
+          ),
         },
         tests: problem.tests.map((_, i) => ({
           input: path.join("tests", `in_${i + 1}.txt`),
@@ -139,15 +166,15 @@ atcoder.command("gen")
 
       // generate templates configured in `config.templates`
       // touch abc123/A/CMakeLists.txt ...
-      for (const template of config.templates(problem)) {
+      for (const template of config.templates(problem, contest)) {
         const filename = typeof template.filename === "function"
-          ? template.filename(problem)
+          ? template.filename(problem, contest)
           : template.filename
         const filepath = path.isAbsolute(filename)
           ? filename
           : path.resolve(problemDir, filename)
         const content = typeof template.content === "function"
-          ? template.content(problem)
+          ? template.content(problem, contest)
           : template.content
         await Deno.writeTextFile(
           filepath,

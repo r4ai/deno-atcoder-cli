@@ -84,7 +84,7 @@ const cleanUpSampleProjects = async () => {
 describe("Tests for atcoder cli", () => {
   beforeAll(setupSampleProjects)
 
-  afterAll(cleanUpSampleProjects)
+  // afterAll(cleanUpSampleProjects)
 
   for (const language of LANGUAGES) {
     it(`snapshot test for ${language} project directory structure`, async (t) => {

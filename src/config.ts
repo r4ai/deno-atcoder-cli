@@ -1,6 +1,7 @@
 import { defu, fs, path } from "./deps.ts"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
 import type { DeepRequired } from "./utils.ts"
+import { Contest } from "./main.ts"
 
 export const CONFIG_FILE_NAMES = [
   "atcoder.config.ts",
@@ -10,13 +11,23 @@ export const CONFIG_FILE_NAMES = [
 export type Template = {
   /**
    * ファイル名
+   * @argument problem 問題の情報（例：A問題の情報）
+   * @argument contest コンテストの情報（例：abc123の情報）
+   * @returns ファイル名
    */
-  filename: string | ((problem: Problem & ProblemInfo) => string)
+  filename:
+    | string
+    | ((problem: Problem & ProblemInfo, contest: Contest) => string)
 
   /**
    * ファイルの内容
+   * @argument problem 問題の情報（例：A問題の情報）
+   * @argument contest コンテストの情報（例：abc123の情報）
+   * @returns ファイルの内容
    */
-  content: string | ((problem: Problem & ProblemInfo) => string)
+  content:
+    | string
+    | ((problem: Problem & ProblemInfo, contest: Contest) => string)
 }
 
 export type Config = {
@@ -50,11 +61,16 @@ export type Config = {
   contestsDir: string
 
   /**
-   * 各問題のディレクトリを保存するディレクトリのパス
+   * 各問題のディレクトリの名前
+   * @argument problem 問題の情報
+   * @argument contest コンテストの情報
+   * @returns 問題を保存するディレクトリの名前
    * @default (problem: Problem & ProblemInfo) => problem.id
    * @example "A", "B", "C", "Ex", ...
    */
-  problemDir: string | ((problem: Problem & ProblemInfo) => string)
+  problemDir:
+    | string
+    | ((problem: Problem & ProblemInfo, contest: Contest) => string)
 
   /**
    * 問題ごとに生成するソースファイル
@@ -63,54 +79,78 @@ export type Config = {
     /**
      * ソースファイルの拡張子を除いたファイル名
      * @argument problem 問題の情報
+     * @argument contest コンテストの情報
      * @returns ソースファイルの拡張子を除いたファイル名
      * @default (problem) => problem.id.toLowerCase() // "a", "b", "c", ...
      */
-    stem?: string | ((problem: Problem & ProblemInfo) => string)
+    stem?:
+      | string
+      | ((problem: Problem & ProblemInfo, contest: Contest) => string)
 
     /**
      * ソースファイルの拡張子
      * @argument problem 問題の情報
+     * @argument contest コンテストの情報
      * @returns ソースファイルの拡張子
      * @default "cpp"
      * @example "py"
      */
-    extension?: string | ((problem: Problem & ProblemInfo) => string)
+    extension?:
+      | string
+      | ((problem: Problem & ProblemInfo, contest: Contest) => string)
 
     /**
      * ソースファイルのコンパイルコマンド
+     * @argument sourcePath 問題ディレクトリから見たソースファイルの相対パス（例：a.cpp）
      * @argument problem 問題の情報
+     * @argument contest コンテストの情報
      * @returns コンパイルコマンド
      * @default (sourcePath: string) => `g++ -std=gnu++20 -Wall -Wextra -O2 -o a.out ${sourcePath}`
      * @see https://img.atcoder.jp/file/language-update/language-list.html
      */
     compileCommand?:
       | string
-      | ((sourcePath: string, problem: Problem & ProblemInfo) => string)
+      | ((
+        sourcePath: string,
+        problem: Problem & ProblemInfo,
+        contest: Contest,
+      ) => string)
 
     /**
      * ソースファイルの実行コマンド
+     * @argument sourcePath 問題ディレクトリから見たソースファイルの相対パス（例：a.cpp）
      * @argument problem 問題の情報
+     * @argument contest コンテストの情報
      * @returns 実行コマンド
      * @default "./a.out"
      * @see https://img.atcoder.jp/file/language-update/language-list.html
      */
     executeCommand?:
       | string
-      | ((sourcePath: string, problem: Problem & ProblemInfo) => string)
+      | ((
+        sourcePath: string,
+        problem: Problem & ProblemInfo,
+        contest: Contest,
+      ) => string)
 
     /**
      * ソースファイルのテンプレート
      * @argument problem 問題の情報
+     * @argument contest コンテストの情報
      * @returns ソースファイルの内容
      * @default ""
      * @example "int main() { return 0; }"
      */
-    template?: string | ((problem: Problem & ProblemInfo) => string)
+    template?:
+      | string
+      | ((problem: Problem & ProblemInfo, contest: Contest) => string)
   }
 
   /**
    * 問題ごとに生成するその他のファイルたち
+   * @argument problem 問題の情報
+   * @argument contest コンテストの情報
+   * @returns テンプレートたち
    * @default []
    * @example
    * ```
@@ -122,7 +162,9 @@ export type Config = {
    * ]
    * ```
    */
-  templates?: Template[] | ((problem: Problem & ProblemInfo) => Template[])
+  templates?:
+    | Template[]
+    | ((problem: Problem & ProblemInfo, contest: Contest) => Template[])
 }
 
 export const defaultConfig: DeepRequired<Config> = {
