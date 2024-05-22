@@ -8,6 +8,7 @@ export {
   defaultConfig,
   defineConfig,
   getConfig,
+  type Template,
 } from "./config.ts"
 export {
   getMetadata,
