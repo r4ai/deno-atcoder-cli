@@ -1,5 +1,5 @@
 import { $, fs, path } from "../src/deps.ts"
-import { type afterAll, assertSnapshot, beforeAll, describe, it } from "./deps.ts"
+import { assertSnapshot, beforeAll, describe, it } from "./deps.ts"
 import { tree } from "./utils/tree.ts"
 
 type Template = {
