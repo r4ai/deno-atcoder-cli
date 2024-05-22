@@ -567,12 +567,13 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
         "      open Batteries\\n" +
         "    \`,\\n" +
         "  },\\n" +
-        "  templates: (problem) => [\\n" +
+        "  templates: (problem, contest) => [\\n" +
         "    {\\n" +
         '      filename: "dune",\\n' +
         "      content: dedent\`\\n" +
         "        (executable\\n" +
         "          (name \${problem.id})\\n" +
+        "          (public_name \${contest.id}-\${problem.id})\\n" +
         "          (libraries batteries))\\n" +
         "      \`,\\n" +
         "    },\\n" +
@@ -593,7 +594,10 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                   type: "file"
                 },
                 {
-                  content: "(executable\\n  (name A)\\n  (libraries batteries))",
+                  content: "(executable\\n" +
+                    "  (name A)\\n" +
+                    "  (public_name abc100-A)\\n" +
+                    "  (libraries batteries))",
                   name: "dune",
                   type: "file"
                 },
@@ -726,7 +730,10 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                   type: "file"
                 },
                 {
-                  content: "(executable\\n  (name B)\\n  (libraries batteries))",
+                  content: "(executable\\n" +
+                    "  (name B)\\n" +
+                    "  (public_name abc100-B)\\n" +
+                    "  (libraries batteries))",
                   name: "dune",
                   type: "file"
                 },
@@ -855,7 +862,10 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                   type: "file"
                 },
                 {
-                  content: "(executable\\n  (name C)\\n  (libraries batteries))",
+                  content: "(executable\\n" +
+                    "  (name C)\\n" +
+                    "  (public_name abc100-C)\\n" +
+                    "  (libraries batteries))",
                   name: "dune",
                   type: "file"
                 },
@@ -980,7 +990,10 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                   type: "file"
                 },
                 {
-                  content: "(executable\\n  (name D)\\n  (libraries batteries))",
+                  content: "(executable\\n" +
+                    "  (name D)\\n" +
+                    "  (public_name abc100-D)\\n" +
+                    "  (libraries batteries))",
                   name: "dune",
                   type: "file"
                 },

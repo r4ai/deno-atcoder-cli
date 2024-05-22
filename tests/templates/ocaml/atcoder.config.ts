@@ -16,12 +16,13 @@ export default defineConfig({
       open Batteries
     `,
   },
-  templates: (problem) => [
+  templates: (problem, contest) => [
     {
       filename: "dune",
       content: dedent`
         (executable
           (name ${problem.id})
+          (public_name ${contest.id}-${problem.id})
           (libraries batteries))
       `,
     },
