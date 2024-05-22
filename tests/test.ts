@@ -62,6 +62,7 @@ describe("Tests for atcoder cli", () => {
       await assertSnapshot(t, actual, {
         serializer: (v) =>
           Deno.inspect(v, {
+            sorted: true,
             depth: Infinity,
             iterableLimit: Infinity,
             strAbbreviateSize: Infinity,

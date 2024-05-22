@@ -2,25 +2,15 @@ export const snapshot = {};
 
 snapshot[`Tests for atcoder cli > snapshot test for python project directory structure 1`] = `
 {
-  type: "dir",
-  name: "python",
   children: [
     {
-      type: "dir",
-      name: "contests",
       children: [
         {
-          type: "dir",
-          name: "abc100",
           children: [
             {
-              type: "dir",
-              name: "D",
               children: [
-                { type: "file", name: "d.py", content: "" },
+                { content: "", name: "d.py", type: "file" },
                 {
-                  type: "file",
-                  name: "metadata.json",
                   content: "{\\n" +
                     '  "contest": "abc100",\\n' +
                     '  "problem": "D",\\n' +
@@ -47,38 +37,36 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                     '      "output": "tests/out_4.txt"\\n' +
                     "    }\\n" +
                     "  ]\\n" +
-                    "}"
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
                 },
                 {
-                  type: "dir",
-                  name: "tests",
                   children: [
                     {
-                      type: "file",
+                      content: "56\\n",
                       name: "out_1.txt",
-                      content: "56\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "30000000000\\n",
                       name: "out_4.txt",
-                      content: "30000000000\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
-                      name: "in_4.txt",
                       content: "3 2\\n" +
                         "2000000000 -9000000000 4000000000\\n" +
                         "7000000000 -5000000000 3000000000\\n" +
-                        "6000000000 -1000000000 8000000000\\n"
+                        "6000000000 -1000000000 8000000000\\n",
+                      name: "in_4.txt",
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "638\\n",
                       name: "out_3.txt",
-                      content: "638\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
-                      name: "test.ts",
                       content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
                         "\\n" +
                         'import * as path from "jsr:@std/path@0.225.1"\\n' +
@@ -128,11 +116,11 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "      )\\n" +
                         "    })\\n" +
                         "  }\\n" +
-                        "})\\n"
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
                     },
                     {
-                      type: "file",
-                      name: "in_3.txt",
                       content: "10 5\\n" +
                         "10 -80 21\\n" +
                         "23 8 38\\n" +
@@ -143,34 +131,36 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "-72 -50 59\\n" +
                         "21 65 -32\\n" +
                         "40 -94 87\\n" +
-                        "-62 18 82\\n"
+                        "-62 18 82\\n",
+                      name: "in_3.txt",
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "54\\n",
                       name: "out_2.txt",
-                      content: "54\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "5 3\\n3 1 4\\n1 5 9\\n2 6 5\\n3 5 8\\n9 7 9\\n",
                       name: "in_1.txt",
-                      content: "5 3\\n3 1 4\\n1 5 9\\n2 6 5\\n3 5 8\\n9 7 9\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "5 3\\n1 -2 3\\n-4 5 -6\\n7 -8 -9\\n-10 11 -12\\n13 -14 15\\n",
                       name: "in_2.txt",
-                      content: "5 3\\n1 -2 3\\n-4 5 -6\\n7 -8 -9\\n-10 11 -12\\n13 -14 15\\n"
+                      type: "file"
                     }
-                  ]
+                  ],
+                  name: "tests",
+                  type: "dir"
                 }
-              ]
+              ],
+              name: "D",
+              type: "dir"
             },
             {
-              type: "dir",
-              name: "A",
               children: [
                 {
-                  type: "file",
-                  name: "metadata.json",
                   content: "{\\n" +
                     '  "contest": "abc100",\\n' +
                     '  "problem": "A",\\n' +
@@ -193,25 +183,23 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                     '      "output": "tests/out_3.txt"\\n' +
                     "    }\\n" +
                     "  ]\\n" +
-                    "}"
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
                 },
                 {
-                  type: "dir",
-                  name: "tests",
                   children: [
                     {
-                      type: "file",
+                      content: "Yay!\\n",
                       name: "out_1.txt",
-                      content: "Yay!\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: ":(\\n",
                       name: "out_3.txt",
-                      content: ":(\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
-                      name: "test.ts",
                       content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
                         "\\n" +
                         'import * as path from "jsr:@std/path@0.225.1"\\n' +
@@ -261,41 +249,43 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "      )\\n" +
                         "    })\\n" +
                         "  }\\n" +
-                        "})\\n"
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "11 4\\n",
                       name: "in_3.txt",
-                      content: "11 4\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "Yay!\\n",
                       name: "out_2.txt",
-                      content: "Yay!\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "5 4\\n",
                       name: "in_1.txt",
-                      content: "5 4\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "8 8\\n",
                       name: "in_2.txt",
-                      content: "8 8\\n"
+                      type: "file"
                     }
-                  ]
+                  ],
+                  name: "tests",
+                  type: "dir"
                 },
-                { type: "file", name: "a.py", content: "" }
-              ]
+                { content: "", name: "a.py", type: "file" }
+              ],
+              name: "A",
+              type: "dir"
             },
             {
-              type: "dir",
-              name: "C",
               children: [
-                { type: "file", name: "c.py", content: "" },
+                { content: "", name: "c.py", type: "file" },
                 {
-                  type: "file",
-                  name: "metadata.json",
                   content: "{\\n" +
                     '  "contest": "abc100",\\n' +
                     '  "problem": "C",\\n' +
@@ -318,21 +308,19 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                     '      "output": "tests/out_3.txt"\\n' +
                     "    }\\n" +
                     "  ]\\n" +
-                    "}"
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
                 },
                 {
-                  type: "dir",
-                  name: "tests",
                   children: [
-                    { type: "file", name: "out_1.txt", content: "3\\n" },
+                    { content: "3\\n", name: "out_1.txt", type: "file" },
                     {
-                      type: "file",
+                      content: "39\\n",
                       name: "out_3.txt",
-                      content: "39\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
-                      name: "test.ts",
                       content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
                         "\\n" +
                         'import * as path from "jsr:@std/path@0.225.1"\\n' +
@@ -382,36 +370,38 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "      )\\n" +
                         "    })\\n" +
                         "  }\\n" +
-                        "})\\n"
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "10\\n2184 2126 1721 1800 1024 2528 3360 1945 1280 1776\\n",
                       name: "in_3.txt",
-                      content: "10\\n2184 2126 1721 1800 1024 2528 3360 1945 1280 1776\\n"
+                      type: "file"
                     },
-                    { type: "file", name: "out_2.txt", content: "0\\n" },
+                    { content: "0\\n", name: "out_2.txt", type: "file" },
                     {
-                      type: "file",
+                      content: "3\\n5 2 4\\n",
                       name: "in_1.txt",
-                      content: "3\\n5 2 4\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "4\\n631 577 243 199\\n",
                       name: "in_2.txt",
-                      content: "4\\n631 577 243 199\\n"
+                      type: "file"
                     }
-                  ]
+                  ],
+                  name: "tests",
+                  type: "dir"
                 }
-              ]
+              ],
+              name: "C",
+              type: "dir"
             },
             {
-              type: "dir",
-              name: "B",
               children: [
-                { type: "file", name: "b.py", content: "" },
+                { content: "", name: "b.py", type: "file" },
                 {
-                  type: "file",
-                  name: "metadata.json",
                   content: "{\\n" +
                     '  "contest": "abc100",\\n' +
                     '  "problem": "B",\\n' +
@@ -434,21 +424,19 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                     '      "output": "tests/out_3.txt"\\n' +
                     "    }\\n" +
                     "  ]\\n" +
-                    "}"
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
                 },
                 {
-                  type: "dir",
-                  name: "tests",
                   children: [
-                    { type: "file", name: "out_1.txt", content: "5\\n" },
+                    { content: "5\\n", name: "out_1.txt", type: "file" },
                     {
-                      type: "file",
+                      content: "850000\\n",
                       name: "out_3.txt",
-                      content: "850000\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
-                      name: "test.ts",
                       content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
                         "\\n" +
                         'import * as path from "jsr:@std/path@0.225.1"\\n' +
@@ -498,39 +486,47 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "      )\\n" +
                         "    })\\n" +
                         "  }\\n" +
-                        "})\\n"
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "2 85\\n",
                       name: "in_3.txt",
-                      content: "2 85\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "1100\\n",
                       name: "out_2.txt",
-                      content: "1100\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "0 5\\n",
                       name: "in_1.txt",
-                      content: "0 5\\n"
+                      type: "file"
                     },
                     {
-                      type: "file",
+                      content: "1 11\\n",
                       name: "in_2.txt",
-                      content: "1 11\\n"
+                      type: "file"
                     }
-                  ]
+                  ],
+                  name: "tests",
+                  type: "dir"
                 }
-              ]
+              ],
+              name: "B",
+              type: "dir"
             }
-          ]
+          ],
+          name: "abc100",
+          type: "dir"
         }
-      ]
+      ],
+      name: "contests",
+      type: "dir"
     },
     {
-      type: "file",
-      name: "atcoder.config.ts",
       content: 'import { defineConfig } from "../../../src/main.ts"\\n' +
         "\\n" +
         "export default defineConfig({\\n" +
@@ -539,8 +535,12 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
         "    compileCommand: (source) => \`python3 -m py_compile \${source}\`,\\n" +
         "    executeCommand: (source) => \`python3 \${source}\`,\\n" +
         "  },\\n" +
-        "})\\n"
+        "})\\n",
+      name: "atcoder.config.ts",
+      type: "file"
     }
-  ]
+  ],
+  name: "python",
+  type: "dir"
 }
 `;
