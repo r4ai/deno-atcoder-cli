@@ -4,6 +4,16 @@ on:
   push:
 
 jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Deno
+        uses: jdx/mise-action@v2
+      - name: Check formatting
+        run: deno fmt --check
+
   test:
     runs-on: ubuntu-latest
     steps:
