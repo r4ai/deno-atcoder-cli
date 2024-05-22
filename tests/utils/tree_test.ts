@@ -33,11 +33,7 @@ describe("Tests for tree utility function", () => {
       type: "dir",
       name: "__test__",
       children: [
-        {
-          type: "dir",
-          name: "g",
-          children: [{ type: "file", name: "h.txt", content: "h" }],
-        },
+        { type: "file", name: "a.txt", content: "a" },
         {
           type: "dir",
           name: "b",
@@ -53,7 +49,11 @@ describe("Tests for tree utility function", () => {
             },
           ],
         },
-        { type: "file", name: "a.txt", content: "a" },
+        {
+          type: "dir",
+          name: "g",
+          children: [{ type: "file", name: "h.txt", content: "h" }],
+        },
       ],
     }
     assertEquals(actual, expected)

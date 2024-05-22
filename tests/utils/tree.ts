@@ -12,8 +12,14 @@ export type Directory = {
   children: Array<File | Directory>
 }
 
-export const tree = (dir: string): Promise<Directory> =>
-  treeInternal({ type: "dir", name: path.basename(dir), children: [] }, dir)
+export const tree = async (dir: string): Promise<Directory> => {
+  const tree = await treeInternal({
+    type: "dir",
+    name: path.basename(dir),
+    children: [],
+  }, dir)
+  return sortTree(tree)
+}
 
 const treeInternal = async (
   tree: Directory,
@@ -37,6 +43,16 @@ const treeInternal = async (
       }
       tree.children.push(subtree)
       await treeInternal(subtree, entryPath)
+    }
+  }
+  return tree
+}
+
+const sortTree = (tree: Directory) => {
+  tree.children.sort((a, b) => a.name.localeCompare(b.name))
+  for (const child of tree.children) {
+    if (child.type === "dir") {
+      sortTree(child)
     }
   }
   return tree
