@@ -62,8 +62,7 @@ atcoder.command("gen")
           problemMetaData.url,
         ),
         {
-          text:
-            `Fetching information for ${contestId}/${problemMetaData.id}`,
+          text: `Fetching information for ${contestId}/${problemMetaData.id}`,
           successText:
             `Fetched information for ${contestId}/${problemMetaData.id}`,
           failText: (err) =>

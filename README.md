@@ -24,7 +24,7 @@ First, create a configuration file in the root of your project:
 ```ts
 // atcoder.config.ts
 
-import { defineConfig } from "jsr:@r4ai/atcoder-cli";
+import { defineConfig } from "jsr:@r4ai/atcoder-cli"
 
 export default defineConfig({
   contestsDir: "contests",
@@ -33,14 +33,15 @@ export default defineConfig({
     compileCommand: (source) => `python3 -m py_compile ${source}`,
     executeCommand: (source) => `python3 ${source}`,
   },
-});
+})
 ```
 
 This is a minimal configuration file for Python.
 
-By default, this CLI is configured for the C++ language.
-So, for other languages, you will need to change the config appropriately like the example above.
-Specifically, you need to specify the file extension and the compile and execute commands for the language you use.
+By default, this CLI is configured for the C++ language. So, for other
+languages, you will need to change the config appropriately like the example
+above. Specifically, you need to specify the file extension and the compile and
+execute commands for the language you use.
 
 ### 2. Create a Contest
 
@@ -136,9 +137,9 @@ tests/
 └── test.ts
 ```
 
-Note that `atcoder test` is only an alias for `deno test`.
-Therefore, `deno test -A` can also run the same test.
-Also, since the test file is executable, you can run the test by typing `. /tests/test.ts`.
+Note that `atcoder test` is only an alias for `deno test`. Therefore,
+`deno test -A` can also run the same test. Also, since the test file is
+executable, you can run the test by typing `. /tests/test.ts`.
 
 ## Usage
 
@@ -166,7 +167,7 @@ Create a `atcoder.config.ts` file in the root of your project.
 ```ts
 // atcoder.config.ts
 
-import { defineConfig } from "jsr:@r4ai/atcoder-cli";
+import { defineConfig } from "jsr:@r4ai/atcoder-cli"
 
 export default defineConfig({
   contestsDir: "contests",
@@ -175,7 +176,7 @@ export default defineConfig({
     compileCommand: (source) => `python3 -m py_compile ${source}`,
     executeCommand: (source) => `python3 ${source}`,
   },
-});
+})
 ```
 
 ## Example

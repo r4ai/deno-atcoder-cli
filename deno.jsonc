@@ -6,6 +6,9 @@
     "include": ["src/**/*", "LICENSE", "README.md", "deno.jsonc", "deno.lock"]
   },
   "tasks": {},
+  "test": {
+    "exclude": ["tests/sample-projects/", "src/templates/"]
+  },
   "fmt": {
     "semiColons": false
   }
