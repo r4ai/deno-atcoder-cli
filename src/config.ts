@@ -1,7 +1,7 @@
 import { defu, fs, path } from "./deps.ts"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
 import type { DeepRequired } from "./utils.ts"
-import { Contest } from "./main.ts"
+import type { Contest } from "./main.ts"
 
 export const CONFIG_FILE_NAMES = [
   "atcoder.config.ts",

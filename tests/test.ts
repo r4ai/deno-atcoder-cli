@@ -1,5 +1,5 @@
 import { $, fs, path } from "../src/deps.ts"
-import { afterAll, assertSnapshot, beforeAll, describe, it } from "./deps.ts"
+import { type afterAll, assertSnapshot, beforeAll, describe, it } from "./deps.ts"
 import { tree } from "./utils/tree.ts"
 
 type Template = {
@@ -75,16 +75,8 @@ const setupSampleProjects = async () => {
   }
 }
 
-const cleanUpSampleProjects = async () => {
-  if (fs.existsSync(SAMPLE_PROJECTS_DIR)) {
-    await Deno.remove(SAMPLE_PROJECTS_DIR, { recursive: true })
-  }
-}
-
 describe("Tests for atcoder cli", () => {
   beforeAll(setupSampleProjects)
-
-  // afterAll(cleanUpSampleProjects)
 
   for (const language of LANGUAGES) {
     it(`snapshot test for ${language} project directory structure`, async (t) => {
