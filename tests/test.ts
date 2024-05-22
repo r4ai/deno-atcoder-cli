@@ -15,7 +15,7 @@ if (!dirname) {
 const SAMPLE_PROJECTS_DIR = path.resolve(dirname, "sample-projects")
 const TEMPLATES_DIR = path.resolve(dirname, "templates")
 
-const LANGUAGES = ["python"] as const
+const LANGUAGES = ["python", "ocaml"] as const
 const CONTESTS = ["abc100"] as const
 
 const getTemplates = async (
