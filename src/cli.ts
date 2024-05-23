@@ -11,12 +11,18 @@ import {
 import { getContests } from "./api/contests.ts"
 import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"
-import { defaultConfig, getConfig, getConfigDir } from "./config.ts"
+import {
+  defaultConfig,
+  getConfig,
+  getConfigDir,
+  type Template,
+} from "./config.ts"
 import { getProblemDir, type Metadata, METADATA_FILE_NAME } from "./metadata.ts"
+import { getVersion } from "./utils.ts"
 
 export const atcoder = new Command()
   .name("atcoder")
-  .version("0.1.0")
+  .version(await getVersion())
   .description("Utility CLI for AtCoder")
   .command("completions", new CompletionsCommand())
 
@@ -26,21 +32,44 @@ atcoder.command("gen")
   .option("-c, --config <config:file>", "Path to the config file", {
     value: (p) => path.resolve(p),
   })
+  .group("Configurations")
+  .option(
+    "--contests-dir <contests-dir:file>",
+    "Path to the contests directory",
+  )
+  .option("--problem-dir <problem-dir:file>", "Path to each problem directory")
+  .option("--source.stem <stem:string>", "Source file stem")
+  .option("--source.extension <extension:string>", "Source file extension")
+  .option(
+    "--source.compile-command <compile-command:string>",
+    "Compile command",
+  )
+  .option(
+    "--source.execute-command <execute-command:string>",
+    "Execute command",
+  )
+  .option("--source.template <template:string>", "Source file template")
+  .option(
+    "--templates <templates:string[]>",
+    "Templates. Each template should be a JSON string with `filename` and `content` properties.",
+    {
+      value: (templates): Template[] =>
+        templates.map((template) => JSON.parse(template)),
+    },
+  )
   .option("--cache-max-age <cache-max-age:number>", "Cache max age [ms]")
   .arguments("<contest-id:string:contest-id>")
   .complete("contest-id", async () => {
     const contests = await getContests(defaultConfig.cacheMaxAge)
     return contests.map((contest) => contest.id)
   })
-  .action(async (options, contestId) => {
-    const projectDir = options.config
-      ? path.dirname(options.config)
+  .action(async ({ config: configPath, force, ...options }, contestId) => {
+    const projectDir = configPath
+      ? path.dirname(configPath)
       : getConfigDir(Deno.cwd()) ?? Deno.cwd()
     const config = await getConfig(
-      {
-        cacheMaxAge: options.cacheMaxAge,
-      },
-      options.config,
+      options,
+      configPath,
     )
     const problems = await oraPromise(
       getProblems(contestId, config.cacheMaxAge()),
@@ -60,7 +89,7 @@ atcoder.command("gen")
       ? config.contestsDir()
       : path.resolve(projectDir, config.contestsDir())
     const contestDir = path.resolve(contestsDir, contestId)
-    if (options.force && fs.existsSync(contestDir)) {
+    if (force && fs.existsSync(contestDir)) {
       await Deno.remove(contestDir, { recursive: true })
     }
     if (fs.existsSync(contestDir)) {
