@@ -1,6 +1,8 @@
-import { $, fs, path } from "../src/deps.ts"
+import { fs, path } from "../src/deps.ts"
 import { assertSnapshot, beforeAll, describe, it } from "./deps.ts"
 import { tree } from "./utils/tree.ts"
+import { serializer } from "./utils/serializer.ts"
+import { runAtCoderCli } from "./utils/cli.ts"
 
 type Template = {
   filepath: string
@@ -59,20 +61,6 @@ const setupSampleProjects = async () => {
   if (fs.existsSync(SAMPLE_PROJECTS_DIR)) {
     await Deno.remove(SAMPLE_PROJECTS_DIR, { recursive: true })
   }
-  for (const language of LANGUAGES) {
-    const projectDir = path.resolve(SAMPLE_PROJECTS_DIR, language)
-    await Deno.mkdir(projectDir, { recursive: true })
-
-    // Write templates
-    // e.g. templates/python/atcoder.config.ts -> sample-projects/python/atcoder.config.ts
-    const templates = await getTemplates(language)
-    await writeTemplates(templates)
-
-    // Generate contests
-    for (const contest of CONTESTS) {
-      await $`deno run -A ../../../src/main.ts gen ${contest}`.cwd(projectDir)
-    }
-  }
 }
 
 describe("Tests for atcoder cli", () => {
@@ -81,16 +69,52 @@ describe("Tests for atcoder cli", () => {
   for (const language of LANGUAGES) {
     it(`snapshot test for ${language} project directory structure`, async (t) => {
       const projectDir = path.resolve(SAMPLE_PROJECTS_DIR, language)
+      await Deno.mkdir(projectDir, { recursive: true })
+
+      // Write templates
+      // e.g. templates/python/atcoder.config.ts -> sample-projects/python/atcoder.config.ts
+      const templates = await getTemplates(language)
+      await writeTemplates(templates)
+
+      // Generate contests
+      for (const contest of CONTESTS) {
+        await runAtCoderCli(
+          [
+            "gen",
+            "--cache-max-age",
+            "86400000", // 24 hours
+            contest,
+          ],
+          path.resolve(SAMPLE_PROJECTS_DIR, language),
+        )
+      }
+
       const actual = await tree(projectDir)
-      await assertSnapshot(t, actual, {
-        serializer: (v) =>
-          Deno.inspect(v, {
-            sorted: true,
-            depth: Infinity,
-            iterableLimit: Infinity,
-            strAbbreviateSize: Infinity,
-          }),
-      })
+      await assertSnapshot(t, actual, { serializer })
     })
   }
+
+  it("snapshot test for cli options", async (t) => {
+    const projectDir = path.resolve(SAMPLE_PROJECTS_DIR, "cli-options")
+    await Deno.mkdir(projectDir, { recursive: true })
+
+    await runAtCoderCli(
+      [
+        "gen",
+        "--config",
+        "../../templates/python/atcoder.config.ts",
+        "--source.stem",
+        "main",
+        "--source.extension",
+        "atcoder.py",
+        "--cache-max-age",
+        "86400000", // 24 hours
+        "abc300",
+      ],
+      path.resolve(SAMPLE_PROJECTS_DIR, "cli-options"),
+    )
+
+    const actual = await tree(projectDir)
+    await assertSnapshot(t, actual, { serializer })
+  })
 })

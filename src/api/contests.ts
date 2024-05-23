@@ -9,28 +9,20 @@ export type Contest = {
 export type Contests = Contest[]
 
 type CachedContests = {
-  contents: Contests
+  contests: Contests
   time: number
 }
 
-export const getContests = async (): Promise<Contests> => {
-  const now = Date.now()
-  const cachedContestsData = localStorage.getItem("contests")
-  if (cachedContestsData) {
-    const { contents: cachedContests, time }: CachedContests = JSON.parse(
-      cachedContestsData,
-    )
-    if (now - time < 1000 * 3) {
-      return cachedContests
-    }
-
-    const contents = await fetchContests()
-    cacheContests({ contents, time: now })
-    return contents
+export const getContests = async (
+  cacheMaxAge: number,
+): Promise<Contests> => {
+  const cachedContests = getCachedContests()
+  if (cachedContests && Date.now() - cachedContests.time < cacheMaxAge) {
+    return cachedContests.contests
   }
 
   const contests = await fetchContests()
-  cacheContests({ contents: contests, time: now })
+  cacheContests(contests)
   return contests
 }
 
@@ -42,6 +34,18 @@ const fetchContests = async (): Promise<Contests> => {
   return contests
 }
 
-const cacheContests = (contests: CachedContests) => {
-  localStorage.setItem("contests", JSON.stringify(contests))
+const getCachedContests = (): CachedContests | undefined => {
+  const cachedContestsData = localStorage.getItem("contests")
+  if (!cachedContestsData) {
+    return undefined
+  }
+  return JSON.parse(cachedContestsData)
+}
+
+const cacheContests = (contests: Contests) => {
+  const cachedContests: CachedContests = {
+    contests,
+    time: Date.now(),
+  }
+  localStorage.setItem("contests", JSON.stringify(cachedContests))
 }

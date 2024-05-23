@@ -58,9 +58,10 @@ export const getProblemInfo = async (
   contestId: string,
   problemId: string,
   problemUrl: URL,
+  cacheMaxAge: number,
 ): Promise<ProblemInfo> => {
   const cachedProblemInfo = getCachedProblemInfo(contestId, problemId)
-  if (cachedProblemInfo && Date.now() - cachedProblemInfo.time < 1000 * 3) {
+  if (cachedProblemInfo && Date.now() - cachedProblemInfo.time < cacheMaxAge) {
     return cachedProblemInfo.problem
   }
 
