@@ -1,7 +1,6 @@
 import { fs, path } from "../src/deps.ts"
-import { assertSnapshot, beforeAll, describe, it, stub } from "./deps.ts"
+import { assertSnapshot, beforeAll, describe, it } from "./deps.ts"
 import { tree } from "./utils/tree.ts"
-import { atcoder } from "../src/cli.ts"
 import { serializer } from "./utils/serializer.ts"
 import { runAtCoderCli } from "./utils/cli.ts"
 
