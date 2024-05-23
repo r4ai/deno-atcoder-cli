@@ -80,7 +80,12 @@ describe("Tests for atcoder cli", () => {
       // Generate contests
       for (const contest of CONTESTS) {
         await runAtCoderCli(
-          ["gen", contest],
+          [
+            "gen",
+            "--cache-max-age",
+            "86400000", // 24 hours
+            contest,
+          ],
           path.resolve(SAMPLE_PROJECTS_DIR, language),
         )
       }
@@ -99,6 +104,12 @@ describe("Tests for atcoder cli", () => {
         "gen",
         "--config",
         "../../templates/python/atcoder.config.ts",
+        "--source.stem",
+        "main",
+        "--source.extension",
+        "atcoder.py",
+        "--cache-max-age",
+        "86400000", // 24 hours
         "abc300",
       ],
       path.resolve(SAMPLE_PROJECTS_DIR, "cli-options"),

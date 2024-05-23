@@ -1178,15 +1178,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
           children: [
             {
               children: [
-                { content: "", name: "a.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "A",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "a.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile a.py",\\n' +
-                    '    "executeCommand": "python3 a.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
@@ -1290,15 +1290,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
             },
             {
               children: [
-                { content: "", name: "b.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "B",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "b.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile b.py",\\n' +
-                    '    "executeCommand": "python3 b.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
@@ -1448,15 +1448,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
             },
             {
               children: [
-                { content: "", name: "c.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "C",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "c.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile c.py",\\n' +
-                    '    "executeCommand": "python3 c.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
@@ -1604,15 +1604,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
             },
             {
               children: [
-                { content: "", name: "d.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "D",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "d.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile d.py",\\n' +
-                    '    "executeCommand": "python3 d.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
@@ -1710,15 +1710,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
             },
             {
               children: [
-                { content: "", name: "e.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "E",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "e.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile e.py",\\n' +
-                    '    "executeCommand": "python3 e.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
@@ -1836,15 +1836,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
             },
             {
               children: [
-                { content: "", name: "ex.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "Ex",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "ex.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile ex.py",\\n' +
-                    '    "executeCommand": "python3 ex.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
@@ -1988,15 +1988,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
             },
             {
               children: [
-                { content: "", name: "f.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "F",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "f.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile f.py",\\n' +
-                    '    "executeCommand": "python3 f.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
@@ -2105,15 +2105,15 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
             },
             {
               children: [
-                { content: "", name: "g.py", type: "file" },
+                { content: "", name: "main.atcoder.py", type: "file" },
                 {
                   content: "{\\n" +
                     '  "contest": "abc300",\\n' +
                     '  "problem": "G",\\n' +
                     '  "source": {\\n' +
-                    '    "path": "g.py",\\n' +
-                    '    "compileCommand": "python3 -m py_compile g.py",\\n' +
-                    '    "executeCommand": "python3 g.py"\\n' +
+                    '    "path": "main.atcoder.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile main.atcoder.py",\\n' +
+                    '    "executeCommand": "python3 main.atcoder.py"\\n' +
                     "  },\\n" +
                     '  "tests": [\\n' +
                     "    {\\n" +
