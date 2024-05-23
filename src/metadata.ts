@@ -41,7 +41,9 @@ export const getMetadata = async (
   return getMetadata(parentDir)
 }
 
-export const getProblemDir = async (dir: string): Promise<string | undefined> => {
+export const getProblemDir = async (
+  dir: string,
+): Promise<string | undefined> => {
   const isFile = Deno.statSync(path.resolve(dir)).isFile
   const metadataPath = isFile ? dir : path.resolve(dir, METADATA_FILE_NAME)
   const metadata = await loadMetadata(metadataPath)
