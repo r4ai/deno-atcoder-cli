@@ -13,11 +13,25 @@ export type Metadata = {
   tests: { input: string; output: string }[]
 }
 
-export const getMetadata = (dir: string): Metadata | undefined => {
-  if (fs.existsSync(path.resolve(dir, METADATA_FILE_NAME))) {
-    return JSON.parse(
-      Deno.readTextFileSync(path.resolve(dir, METADATA_FILE_NAME)),
-    )
+export const loadMetadata = async (
+  metadataPath: string,
+): Promise<Metadata | undefined> => {
+  if (!fs.existsSync(metadataPath)) {
+    return undefined
+  }
+  const metadata = await Deno.readTextFile(metadataPath)
+  return JSON.parse(metadata)
+}
+
+export const getMetadata = async (
+  dir: string,
+): Promise<Metadata | undefined> => {
+  const metadataPath = Deno.statSync(path.resolve(dir)).isFile
+    ? dir
+    : path.resolve(dir, METADATA_FILE_NAME)
+  const metadata = await loadMetadata(metadataPath)
+  if (metadata) {
+    return metadata
   }
 
   const parentDir = path.dirname(dir)
@@ -27,9 +41,14 @@ export const getMetadata = (dir: string): Metadata | undefined => {
   return getMetadata(parentDir)
 }
 
-export const getProblemDir = (dir: string): string | undefined => {
-  if (fs.existsSync(path.resolve(dir, METADATA_FILE_NAME))) {
-    return dir
+export const getProblemDir = async (
+  dir: string,
+): Promise<string | undefined> => {
+  const isFile = Deno.statSync(path.resolve(dir)).isFile
+  const metadataPath = isFile ? dir : path.resolve(dir, METADATA_FILE_NAME)
+  const metadata = await loadMetadata(metadataPath)
+  if (metadata) {
+    return isFile ? path.dirname(dir) : dir
   }
 
   const parentDir = path.dirname(dir)

@@ -17,7 +17,12 @@ import {
   getConfigDir,
   type Template,
 } from "./config.ts"
-import { getProblemDir, type Metadata, METADATA_FILE_NAME } from "./metadata.ts"
+import {
+  getMetadata,
+  getProblemDir,
+  type Metadata,
+  METADATA_FILE_NAME,
+} from "./metadata.ts"
 import { getVersion } from "./utils.ts"
 
 export const atcoder = new Command()
@@ -27,7 +32,7 @@ export const atcoder = new Command()
   .command("completions", new CompletionsCommand())
 
 // Generate contest folder and files
-atcoder.command("gen")
+atcoder.command("gen", "Generate contest")
   .option("-f, --force", "Overwrite existing files")
   .option("-c, --config <config:file>", "Path to the config file", {
     value: (p) => path.resolve(p),
@@ -239,10 +244,47 @@ atcoder.command("gen")
     )
   })
 
-atcoder.command("test")
-  .action(async () => {
+atcoder.command("test", "Run tests")
+  .option("-m, --metadata <metadata:string>", "Path to the metadata.json file")
+  .action(async ({ metadata: metadataPath }) => {
+    const problemDir = await getProblemDir(metadataPath ?? Deno.cwd())
+    if (!problemDir) {
+      throw new Error(`Metadata not found: ${metadataPath}`)
+    }
     await $`deno test --v8-flags="--stack-trace-limit=3" --allow-read --allow-env --allow-run --allow-net`
-      .cwd(
-        getProblemDir(Deno.cwd()) ?? Deno.cwd(),
-      )
+      .cwd(problemDir)
+  })
+
+atcoder.command("compile", "Compile source code")
+  .option("-m, --metadata <metadata:string>", "Path to the metadata.json file")
+  .action(async ({ metadata: metadataPath }) => {
+    const metadata = await getMetadata(metadataPath ?? Deno.cwd())
+    const problemDir = await getProblemDir(metadataPath ?? Deno.cwd())
+    if (!metadata || !problemDir) {
+      throw new Error(`Metadata not found: ${metadataPath}`)
+    }
+    await $.raw`${metadata.source.compileCommand}`.cwd(problemDir)
+  })
+
+atcoder.command("execute", "Execute compiled code")
+  .option("-m, --metadata <metadata:string>", "Path to the metadata.json file")
+  .action(async ({ metadata: metadataPath }) => {
+    const metadata = await getMetadata(metadataPath ?? Deno.cwd())
+    const problemDir = await getProblemDir(metadataPath ?? Deno.cwd())
+    if (!metadata || !problemDir) {
+      throw new Error(`Metadata not found: ${metadataPath}`)
+    }
+    await $.raw`${metadata.source.executeCommand}`.cwd(problemDir)
+  })
+
+atcoder.command("run", "Compile and execute source code")
+  .option("-m, --metadata <metadata:string>", "Path to the metadata.json file")
+  .action(async ({ metadata: metadataPath }) => {
+    const metadata = await getMetadata(metadataPath ?? Deno.cwd())
+    const problemDir = await getProblemDir(metadataPath ?? Deno.cwd())
+    if (!metadata || !problemDir) {
+      throw new Error(`Metadata not found: ${metadataPath}`)
+    }
+    await $.raw`${metadata.source.compileCommand}`.cwd(problemDir)
+    await $.raw`${metadata.source.executeCommand}`.cwd(problemDir)
   })

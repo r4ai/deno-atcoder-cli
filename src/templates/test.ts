@@ -8,7 +8,7 @@ import {
   getMetadata,
   getProblemDir,
   METADATA_FILE_NAME,
-} from "jsr:@r4ai/atcoder-cli@0.3.2"
+} from "jsr:@r4ai/atcoder-cli@0.4.0"
 
 const testsDir = import.meta.dirname!
 const problemDir = getProblemDir(testsDir)

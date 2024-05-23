@@ -106,6 +106,24 @@ for i, c in enumerate(C):
         print(i + 1)
 ```
 
+You can run the code with the following command:
+
+```sh
+cd contests/abc300/A
+atcoder run < tests/in_1.txt
+```
+
+Note that `atcoder run` is just an alias for
+`atcoder compile && atcoder execute`. Also, `atcoder compile` executes the
+`source.compileCommand` listed in `metadata.json`, and `atcoder execute`
+executes the `source.executeCommand` as well.
+
+Of course, you can also run the code directly:
+
+```sh
+python3 a.py < tests/in_1.txt
+```
+
 ### 4. Run Tests
 
 Run tests for each problem:
@@ -139,7 +157,7 @@ tests/
 
 Note that `atcoder test` is only an alias for `deno test`. Therefore,
 `deno test -A` can also run the same test. Also, since the test file is
-executable, you can run the test by typing `. /tests/test.ts`.
+executable, you can run the test by typing `./tests/test.ts`.
 
 ## Usage
 
@@ -181,7 +199,8 @@ export default defineConfig({
 
 ## Example
 
-For sample projects, see the [sample-projects](./tests/sample-projects/).
+For examples of configurations for each language, please refer to
+[./tests/templates](./tests/templates/).
 
 ## Development
 
