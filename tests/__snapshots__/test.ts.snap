@@ -1168,3 +1168,1061 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
   type: "dir"
 }
 `;
+
+snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
+{
+  children: [
+    {
+      children: [
+        {
+          children: [
+            {
+              children: [
+                { content: "", name: "a.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "A",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "a.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile a.py",\\n' +
+                    '    "executeCommand": "python3 a.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_3.txt",\\n' +
+                    '      "output": "tests/out_3.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    {
+                      content: "3 125 175\\n200 300 400\\n",
+                      name: "in_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "1 1 1\\n2\\n",
+                      name: "in_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "5 123 456\\n135 246 357 468 579\\n",
+                      name: "in_3.txt",
+                      type: "file"
+                    },
+                    { content: "2\\n", name: "out_1.txt", type: "file" },
+                    { content: "1\\n", name: "out_2.txt", type: "file" },
+                    { content: "5\\n", name: "out_3.txt", type: "file" },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "A",
+              type: "dir"
+            },
+            {
+              children: [
+                { content: "", name: "b.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "B",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "b.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile b.py",\\n' +
+                    '    "executeCommand": "python3 b.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_3.txt",\\n' +
+                    '      "output": "tests/out_3.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_4.txt",\\n' +
+                    '      "output": "tests/out_4.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    {
+                      content: "4 3\\n..#\\n...\\n.#.\\n...\\n#..\\n...\\n.#.\\n...\\n",
+                      name: "in_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "3 2\\n##\\n##\\n#.\\n..\\n#.\\n#.\\n",
+                      name: "in_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "4 5\\n#####\\n.#...\\n.##..\\n..##.\\n...##\\n#...#\\n#####\\n...#.\\n",
+                      name: "in_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "10 30\\n" +
+                        "..........##########..........\\n" +
+                        "..........####....###.....##..\\n" +
+                        ".....##....##......##...#####.\\n" +
+                        "....####...##..#####...##...##\\n" +
+                        "...##..##..##......##..##....#\\n" +
+                        "#.##....##....##...##..##.....\\n" +
+                        "..##....##.##..#####...##...##\\n" +
+                        "..###..###..............##.##.\\n" +
+                        ".#..####..#..............###..\\n" +
+                        "#..........##.................\\n" +
+                        "................#..........##.\\n" +
+                        "######....................####\\n" +
+                        "....###.....##............####\\n" +
+                        ".....##...#####......##....##.\\n" +
+                        ".#####...##...##....####...##.\\n" +
+                        ".....##..##....#...##..##..##.\\n" +
+                        "##...##..##.....#.##....##....\\n" +
+                        ".#####...##...##..##....##.##.\\n" +
+                        "..........##.##...###..###....\\n" +
+                        "...........###...#..####..#...\\n",
+                      name: "in_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "Yes\\n",
+                      name: "out_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "No\\n",
+                      name: "out_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "Yes\\n",
+                      name: "out_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "Yes\\n",
+                      name: "out_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "B",
+              type: "dir"
+            },
+            {
+              children: [
+                { content: "", name: "c.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "C",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "c.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile c.py",\\n' +
+                    '    "executeCommand": "python3 c.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_3.txt",\\n' +
+                    '      "output": "tests/out_3.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_4.txt",\\n' +
+                    '      "output": "tests/out_4.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    {
+                      content: "5 9\\n#.#.#...#\\n.#...#.#.\\n#.#...#..\\n.....#.#.\\n....#...#\\n",
+                      name: "in_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "3 3\\n...\\n...\\n...\\n",
+                      name: "in_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "3 16\\n" +
+                        "#.#.....#.#..#.#\\n" +
+                        ".#.......#....#.\\n" +
+                        "#.#.....#.#..#.#\\n",
+                      name: "in_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "15 20\\n" +
+                        "#.#..#.............#\\n" +
+                        ".#....#....#.#....#.\\n" +
+                        "#.#....#....#....#..\\n" +
+                        "........#..#.#..#...\\n" +
+                        "#.....#..#.....#....\\n" +
+                        ".#...#....#...#..#.#\\n" +
+                        "..#.#......#.#....#.\\n" +
+                        "...#........#....#.#\\n" +
+                        "..#.#......#.#......\\n" +
+                        ".#...#....#...#.....\\n" +
+                        "#.....#..#.....#....\\n" +
+                        "........#.......#...\\n" +
+                        "#.#....#....#.#..#..\\n" +
+                        ".#....#......#....#.\\n" +
+                        "#.#..#......#.#....#\\n",
+                      name: "in_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "1 1 0 0 0\\n",
+                      name: "out_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "0 0 0\\n",
+                      name: "out_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "3 0 0\\n",
+                      name: "out_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "5 0 1 0 0 0 1 0 0 0 0 0 0 0 0\\n",
+                      name: "out_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "C",
+              type: "dir"
+            },
+            {
+              children: [
+                { content: "", name: "d.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "D",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "d.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile d.py",\\n' +
+                    '    "executeCommand": "python3 d.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    {
+                      content: "1000\\n",
+                      name: "in_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "1000000000000\\n",
+                      name: "in_2.txt",
+                      type: "file"
+                    },
+                    { content: "3\\n", name: "out_1.txt", type: "file" },
+                    {
+                      content: "2817785\\n",
+                      name: "out_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "D",
+              type: "dir"
+            },
+            {
+              children: [
+                { content: "", name: "e.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "E",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "e.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile e.py",\\n' +
+                    '    "executeCommand": "python3 e.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_3.txt",\\n' +
+                    '      "output": "tests/out_3.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_4.txt",\\n' +
+                    '      "output": "tests/out_4.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    { content: "6\\n", name: "in_1.txt", type: "file" },
+                    { content: "7\\n", name: "in_2.txt", type: "file" },
+                    {
+                      content: "300\\n",
+                      name: "in_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "979552051200000000\\n",
+                      name: "in_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "239578645\\n",
+                      name: "out_1.txt",
+                      type: "file"
+                    },
+                    { content: "0\\n", name: "out_2.txt", type: "file" },
+                    {
+                      content: "183676961\\n",
+                      name: "out_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "812376310\\n",
+                      name: "out_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "E",
+              type: "dir"
+            },
+            {
+              children: [
+                { content: "", name: "ex.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "Ex",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "ex.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile ex.py",\\n' +
+                    '    "executeCommand": "python3 ex.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_3.txt",\\n' +
+                    '      "output": "tests/out_3.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_4.txt",\\n' +
+                    '      "output": "tests/out_4.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_5.txt",\\n' +
+                    '      "output": "tests/out_5.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    {
+                      content: "2 6\\n",
+                      name: "in_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "2 8\\n",
+                      name: "in_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "1 123456789\\n",
+                      name: "in_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "300 20230429\\n",
+                      name: "in_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "42923 999999999558876113\\n",
+                      name: "in_5.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "21\\n",
+                      name: "out_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "35\\n",
+                      name: "out_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "65536\\n",
+                      name: "out_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "125461938\\n",
+                      name: "out_4.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "300300300\\n",
+                      name: "out_5.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "Ex",
+              type: "dir"
+            },
+            {
+              children: [
+                { content: "", name: "f.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "F",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "f.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile f.py",\\n' +
+                    '    "executeCommand": "python3 f.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_3.txt",\\n' +
+                    '      "output": "tests/out_3.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    {
+                      content: "10 1 2\\nooxxooooox\\n",
+                      name: "in_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "5 3 4\\noxxox\\n",
+                      name: "in_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "30 1000000000 9982443530\\n" +
+                        "oxoxooxoxoxooxoxooxxxoxxxooxox\\n",
+                      name: "in_3.txt",
+                      type: "file"
+                    },
+                    { content: "9\\n", name: "out_1.txt", type: "file" },
+                    { content: "8\\n", name: "out_2.txt", type: "file" },
+                    {
+                      content: "19964887064\\n",
+                      name: "out_3.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "F",
+              type: "dir"
+            },
+            {
+              children: [
+                { content: "", name: "g.py", type: "file" },
+                {
+                  content: "{\\n" +
+                    '  "contest": "abc300",\\n' +
+                    '  "problem": "G",\\n' +
+                    '  "source": {\\n' +
+                    '    "path": "g.py",\\n' +
+                    '    "compileCommand": "python3 -m py_compile g.py",\\n' +
+                    '    "executeCommand": "python3 g.py"\\n' +
+                    "  },\\n" +
+                    '  "tests": [\\n' +
+                    "    {\\n" +
+                    '      "input": "tests/in_1.txt",\\n' +
+                    '      "output": "tests/out_1.txt"\\n' +
+                    "    },\\n" +
+                    "    {\\n" +
+                    '      "input": "tests/in_2.txt",\\n' +
+                    '      "output": "tests/out_2.txt"\\n' +
+                    "    }\\n" +
+                    "  ]\\n" +
+                    "}",
+                  name: "metadata.json",
+                  type: "file"
+                },
+                {
+                  children: [
+                    {
+                      content: "36 3\\n",
+                      name: "in_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "10000000000000000 97\\n",
+                      name: "in_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "14\\n",
+                      name: "out_1.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "2345134674\\n",
+                      name: "out_2.txt",
+                      type: "file"
+                    },
+                    {
+                      content: "#!/usr/bin/env -S deno test --allow-read --allow-env --allow-run --allow-net\\n" +
+                        "\\n" +
+                        'import * as path from "jsr:@std/path@0.225.1"\\n' +
+                        'import { \$ } from "jsr:@david/dax@0.41.0"\\n' +
+                        'import { assertEquals } from "jsr:@std/assert@^0.225.2"\\n' +
+                        'import { beforeAll, describe, it } from "jsr:@std/testing/bdd"\\n' +
+                        "import {\\n" +
+                        "  getMetadata,\\n" +
+                        "  getProblemDir,\\n" +
+                        "  METADATA_FILE_NAME,\\n" +
+                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        "\\n" +
+                        "const testsDir = import.meta.dirname!\\n" +
+                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "if (!problemDir) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "const metadata = getMetadata(problemDir)\\n" +
+                        "if (!metadata) {\\n" +
+                        "  throw new Error(\\n" +
+                        "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
+                        "  )\\n" +
+                        "}\\n" +
+                        "\\n" +
+                        "describe(\`\${metadata.contest}/\${metadata.problem}\`, () => {\\n" +
+                        "  beforeAll(async () => {\\n" +
+                        "    // Compile\\n" +
+                        "    await \$.raw\`\${metadata.source.compileCommand}\`.cwd(problemDir)\\n" +
+                        "  })\\n" +
+                        "\\n" +
+                        "  for (const test of metadata.tests) {\\n" +
+                        "    it(test.input, async () => {\\n" +
+                        "      const input = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.input),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const expected = (await Deno.readTextFile(\\n" +
+                        "        path.resolve(problemDir, test.output),\\n" +
+                        "      )).trimEnd()\\n" +
+                        "      const actual = await \$.raw\`\${metadata.source.executeCommand}\`.stdinText(\\n" +
+                        "        input,\\n" +
+                        "      ).cwd(problemDir).text()\\n" +
+                        "      assertEquals(\\n" +
+                        "        actual,\\n" +
+                        "        expected,\\n" +
+                        "      )\\n" +
+                        "    })\\n" +
+                        "  }\\n" +
+                        "})\\n",
+                      name: "test.ts",
+                      type: "file"
+                    }
+                  ],
+                  name: "tests",
+                  type: "dir"
+                }
+              ],
+              name: "G",
+              type: "dir"
+            }
+          ],
+          name: "abc300",
+          type: "dir"
+        }
+      ],
+      name: "contests",
+      type: "dir"
+    }
+  ],
+  name: "cli-options",
+  type: "dir"
+}
+`;

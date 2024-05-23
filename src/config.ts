@@ -1,6 +1,6 @@
 import { defu, fs, path } from "./deps.ts"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
-import type { DeepRequired } from "./utils.ts"
+import { type DeepRequired, min2ms } from "./utils.ts"
 import type { Contest } from "./main.ts"
 
 export const CONFIG_FILE_NAMES = [
@@ -165,6 +165,12 @@ export type Config = {
   templates?:
     | Template[]
     | ((problem: Problem & ProblemInfo, contest: Contest) => Template[])
+
+  /**
+   * キャッシュの有効期限（ミリ秒）
+   * @default 15 * 60 * 1000 // 15分
+   */
+  cacheMaxAge?: number
 }
 
 export const defaultConfig: DeepRequired<Config> = {
@@ -179,6 +185,7 @@ export const defaultConfig: DeepRequired<Config> = {
     template: "",
   },
   templates: [],
+  cacheMaxAge: min2ms(15),
 }
 
 export const defineConfig = (
@@ -189,15 +196,23 @@ export const defineConfig = (
   return defaultedConfig
 }
 
-const getLocalConfig = async (dir: string): Promise<Config> => {
-  if (!fs.existsSync(dir)) {
-    return defaultConfig
+export const loadConfig = async (
+  configPath?: string,
+): Promise<Config | undefined> => {
+  if (!configPath || !fs.existsSync(configPath)) {
+    return undefined
   }
+  const module = await import("file://" + path.resolve(configPath))
+  return module.default
+}
 
-  const configFile = CONFIG_FILE_NAMES.find((name) => fs.existsSync(name))
-  if (configFile) {
-    const module = await import("file://" + path.resolve(dir, configFile))
-    return module.default
+const getLocalConfig = async (dir: string): Promise<Config> => {
+  const configPath = CONFIG_FILE_NAMES
+    .map((name) => path.resolve(dir, name))
+    .find((configPath) => fs.existsSync(configPath))
+  const config = await loadConfig(configPath)
+  if (config) {
+    return defineConfig(config)
   }
 
   const parentDir = path.dirname(dir)
@@ -208,12 +223,10 @@ const getLocalConfig = async (dir: string): Promise<Config> => {
 }
 
 export const getConfigDir = (dir: string): string | undefined => {
-  if (!fs.existsSync(dir)) {
-    return undefined
-  }
-
-  const configFile = CONFIG_FILE_NAMES.find((name) => fs.existsSync(name))
-  if (configFile) {
+  const configPath = CONFIG_FILE_NAMES
+    .map((name) => path.resolve(dir, name))
+    .find((configPath) => fs.existsSync(configPath))
+  if (configPath) {
     return dir
   }
 
@@ -259,8 +272,10 @@ const callable = <T>(obj: T): Callable<T> => {
 
 export const getConfig = async (
   config?: Partial<Config>,
+  configPath?: string,
 ): Promise<Callable<DeepRequired<Config>>> => {
-  const localConfig = await getLocalConfig(Deno.cwd())
+  const localConfig = await loadConfig(configPath) ??
+    await getLocalConfig(Deno.cwd())
   const mergedConfig = defu(config, localConfig, defaultConfig)
   return callable(mergedConfig)
 }

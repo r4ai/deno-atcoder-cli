@@ -14,10 +14,6 @@ export type Metadata = {
 }
 
 export const getMetadata = (dir: string): Metadata | undefined => {
-  if (!fs.existsSync(dir)) {
-    return undefined
-  }
-
   if (fs.existsSync(path.resolve(dir, METADATA_FILE_NAME))) {
     return JSON.parse(
       Deno.readTextFileSync(path.resolve(dir, METADATA_FILE_NAME)),
@@ -32,10 +28,6 @@ export const getMetadata = (dir: string): Metadata | undefined => {
 }
 
 export const getProblemDir = (dir: string): string | undefined => {
-  if (!fs.existsSync(dir)) {
-    return undefined
-  }
-
   if (fs.existsSync(path.resolve(dir, METADATA_FILE_NAME))) {
     return dir
   }

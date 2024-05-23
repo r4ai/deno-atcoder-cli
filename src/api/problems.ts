@@ -38,9 +38,12 @@ type CachedProblems = {
   time: number
 }
 
-export const getProblems = async (contestId: string): Promise<Problems> => {
+export const getProblems = async (
+  contestId: string,
+  cacheMaxAge: number,
+): Promise<Problems> => {
   const cachedProblems = getCachedProblems(contestId)
-  if (cachedProblems && Date.now() - cachedProblems.time < 1000 * 3) {
+  if (cachedProblems && Date.now() - cachedProblems.time < cacheMaxAge) {
     return cachedProblems.problems
   }
 

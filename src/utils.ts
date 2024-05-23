@@ -5,3 +5,5 @@ export type DeepRequired<T> = T extends Record<string, unknown> ? {
     [P in keyof T]-?: DeepRequired<T[P]>
   }
   : T
+
+export const min2ms = (min: number): number => min * 60 * 1000

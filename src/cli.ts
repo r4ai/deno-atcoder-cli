@@ -11,7 +11,7 @@ import {
 import { getContests } from "./api/contests.ts"
 import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"
-import { getConfig, getConfigDir } from "./config.ts"
+import { defaultConfig, getConfig, getConfigDir } from "./config.ts"
 import { getProblemDir, type Metadata, METADATA_FILE_NAME } from "./metadata.ts"
 
 export const atcoder = new Command()
@@ -23,30 +23,44 @@ export const atcoder = new Command()
 // Generate contest folder and files
 atcoder.command("gen")
   .option("-f, --force", "Overwrite existing files")
+  .option("-c, --config <config:file>", "Path to the config file", {
+    value: (p) => path.resolve(p),
+  })
+  .option("--cache-max-age <cache-max-age:number>", "Cache max age [ms]")
   .arguments("<contest-id:string:contest-id>")
   .complete("contest-id", async () => {
-    const contests = await getContests()
+    const contests = await getContests(defaultConfig.cacheMaxAge)
     return contests.map((contest) => contest.id)
   })
-  .action(async ({ force }, contestId) => {
-    const projectDir = getConfigDir(Deno.cwd()) ?? Deno.cwd()
-    const config = await getConfig()
-    const problems = await oraPromise(getProblems(contestId), {
-      text: `Fetching problem list for ${contestId}`,
-      successText: `Fetched problem list for ${contestId}`,
-      failText: (err) =>
-        dedent`
+  .action(async (options, contestId) => {
+    const projectDir = options.config
+      ? path.dirname(options.config)
+      : getConfigDir(Deno.cwd()) ?? Deno.cwd()
+    const config = await getConfig(
+      {
+        cacheMaxAge: options.cacheMaxAge,
+      },
+      options.config,
+    )
+    const problems = await oraPromise(
+      getProblems(contestId, config.cacheMaxAge()),
+      {
+        text: `Fetching problem list for ${contestId}`,
+        successText: `Fetched problem list for ${contestId}`,
+        failText: (err) =>
+          dedent`
           Failed to fetch problem list for ${contestId}
           ==================================================
           ${err}
         `,
-    })
+      },
+    )
 
     const contestsDir = path.isAbsolute(config.contestsDir())
       ? config.contestsDir()
       : path.resolve(projectDir, config.contestsDir())
     const contestDir = path.resolve(contestsDir, contestId)
-    if (force && fs.existsSync(contestDir)) {
+    if (options.force && fs.existsSync(contestDir)) {
       await Deno.remove(contestDir, { recursive: true })
     }
     if (fs.existsSync(contestDir)) {
@@ -55,7 +69,7 @@ atcoder.command("gen")
 
     const contest = await oraPromise(
       async () => {
-        const contests = await getContests()
+        const contests = await getContests(config.cacheMaxAge())
         const contest = contests.find((contest) => contest.id === contestId)
         if (!contest) throw new Error(`Contest not found: ${contestId}`)
         return contest
@@ -79,6 +93,7 @@ atcoder.command("gen")
           contestId,
           problemMetaData.id,
           problemMetaData.url,
+          config.cacheMaxAge(),
         ),
         {
           text: `Fetching information for ${contestId}/${problemMetaData.id}`,
