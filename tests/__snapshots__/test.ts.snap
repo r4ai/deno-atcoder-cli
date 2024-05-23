@@ -93,7 +93,7 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -213,7 +213,7 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -329,7 +329,7 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -480,7 +480,7 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -671,7 +671,7 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -803,7 +803,7 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -931,7 +931,7 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -1094,7 +1094,7 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -1237,7 +1237,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -1395,7 +1395,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -1551,7 +1551,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -1657,7 +1657,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -1783,7 +1783,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -1935,7 +1935,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -2052,7 +2052,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
@@ -2162,7 +2162,7 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         "  getMetadata,\\n" +
                         "  getProblemDir,\\n" +
                         "  METADATA_FILE_NAME,\\n" +
-                        '} from "jsr:@r4ai/atcoder-cli@0.3.2"\\n' +
+                        '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
                         "const problemDir = getProblemDir(testsDir)\\n" +
