@@ -197,6 +197,8 @@ export default defineConfig({
 })
 ```
 
+See: https://jsr.io/@r4ai/atcoder-cli/doc/~/Config
+
 ## Example
 
 For examples of configurations for each language, please refer to
