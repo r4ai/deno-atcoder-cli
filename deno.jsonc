@@ -24,5 +24,6 @@
     "dedent": "npm:dedent@^1.5.3",
     "defu": "npm:defu@^6.1.4",
     "ora": "npm:ora@^8.1.1"
-  }
+  },
+  "license": "MIT"
 }
