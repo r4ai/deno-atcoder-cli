@@ -1,4 +1,5 @@
-import { fs, path } from "./deps.ts"
+import * as fs from "@std/fs"
+import * as path from "@std/path"
 
 export const METADATA_FILE_NAME = "metadata.json" as const
 

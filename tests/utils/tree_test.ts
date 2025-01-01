@@ -1,5 +1,7 @@
-import { fs, path } from "../../src/deps.ts"
-import { afterAll, assertEquals, beforeAll, describe, it } from "../deps.ts"
+import * as fs from "@std/fs"
+import * as path from "@std/path"
+import { assertEquals } from "@std/assert"
+import { afterAll, beforeAll, describe, it } from "@std/testing/bdd"
 import { type Directory, tree } from "./tree.ts"
 
 describe("Tests for tree utility function", () => {

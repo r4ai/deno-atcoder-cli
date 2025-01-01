@@ -1,5 +1,5 @@
 import { defineConfig } from "../../../src/main.ts"
-import { dedent } from "../../../src/deps.ts"
+import dedent from "dedent"
 
 export default defineConfig({
   contestsDir: "contests",

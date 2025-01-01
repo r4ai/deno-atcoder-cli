@@ -96,13 +96,13 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -216,13 +216,13 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -332,13 +332,13 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -483,13 +483,13 @@ snapshot[`Tests for atcoder cli > snapshot test for python project directory str
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -550,7 +550,7 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
   children: [
     {
       content: 'import { defineConfig } from "../../../src/main.ts"\\n' +
-        'import { dedent } from "../../../src/deps.ts"\\n' +
+        'import dedent from "dedent"\\n' +
         "\\n" +
         "export default defineConfig({\\n" +
         '  contestsDir: "contests",\\n' +
@@ -674,13 +674,13 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -806,13 +806,13 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -934,13 +934,13 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -1097,13 +1097,13 @@ snapshot[`Tests for atcoder cli > snapshot test for ocaml project directory stru
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -1240,13 +1240,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -1398,13 +1398,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -1554,13 +1554,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -1660,13 +1660,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -1786,13 +1786,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -1938,13 +1938,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -2055,13 +2055,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
@@ -2165,13 +2165,13 @@ snapshot[`Tests for atcoder cli > snapshot test for cli options 1`] = `
                         '} from "jsr:@r4ai/atcoder-cli@0.4.0"\\n' +
                         "\\n" +
                         "const testsDir = import.meta.dirname!\\n" +
-                        "const problemDir = getProblemDir(testsDir)\\n" +
+                        "const problemDir = await getProblemDir(testsDir)\\n" +
                         "if (!problemDir) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get problem directory. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +
                         "  )\\n" +
                         "}\\n" +
-                        "const metadata = getMetadata(problemDir)\\n" +
+                        "const metadata = await getMetadata(problemDir)\\n" +
                         "if (!metadata) {\\n" +
                         "  throw new Error(\\n" +
                         "    \`Failed to get metadata for \${problemDir}. Make sure \\\\\`\${METADATA_FILE_NAME}\\\\\` exists.\`,\\n" +

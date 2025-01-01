@@ -1,4 +1,6 @@
-import { defu, fs, path } from "./deps.ts"
+import * as fs from "@std/fs"
+import * as path from "@std/path"
+import { defu } from "defu"
 import type { Problem, ProblemInfo } from "./api/mod.ts"
 import { type DeepRequired, min2ms } from "./utils.ts"
 import type { Contest } from "./main.ts"

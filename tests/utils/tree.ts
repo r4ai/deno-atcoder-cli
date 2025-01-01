@@ -1,4 +1,4 @@
-import { path } from "../../src/deps.ts"
+import * as path from "@std/path"
 
 export type File = {
   type: "file"

@@ -1,13 +1,11 @@
-import {
-  $,
-  colors,
-  Command,
-  CompletionsCommand,
-  dedent,
-  fs,
-  oraPromise,
-  path,
-} from "./deps.ts"
+import * as fs from "@std/fs"
+import * as path from "@std/path"
+import { Command } from "@cliffy/command"
+import { CompletionsCommand } from "@cliffy/command/completions"
+import { colors } from "@cliffy/ansi/colors"
+import { oraPromise } from "ora"
+import { default as dedent } from "dedent"
+import { $ } from "@david/dax"
 import { getContests } from "./api/contests.ts"
 import { getProblems } from "./api/mod.ts"
 import { getProblemInfo } from "./api/problem-info.ts"

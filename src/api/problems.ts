@@ -1,4 +1,4 @@
-import { DOMParser, type Element } from "../deps.ts"
+import { DOMParser, type Element } from "@b-fuze/deno-dom"
 
 export type Problem = {
   /**

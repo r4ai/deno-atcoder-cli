@@ -11,13 +11,13 @@ import {
 } from "jsr:@r4ai/atcoder-cli@0.4.0"
 
 const testsDir = import.meta.dirname!
-const problemDir = getProblemDir(testsDir)
+const problemDir = await getProblemDir(testsDir)
 if (!problemDir) {
   throw new Error(
     `Failed to get problem directory. Make sure \`${METADATA_FILE_NAME}\` exists.`,
   )
 }
-const metadata = getMetadata(problemDir)
+const metadata = await getMetadata(problemDir)
 if (!metadata) {
   throw new Error(
     `Failed to get metadata for ${problemDir}. Make sure \`${METADATA_FILE_NAME}\` exists.`,
